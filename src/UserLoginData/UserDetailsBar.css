@@ -1,0 +1,12 @@
+.userdetailsbar-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5vh;
+  width: 70%;
+  height: 5vh;
+  background-color: #4f576c;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+}
