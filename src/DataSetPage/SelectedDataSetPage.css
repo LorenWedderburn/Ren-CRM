@@ -1,4 +1,96 @@
 .selecteddatasetpagemain-div {
+  display: grid;
+  grid-template-areas:
+    "contacts contacts"
+    "account wrapup";
+
+  grid-template-rows: 50% 50%;
+  grid-template-columns: 50% 50%;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
   background-color: #c2c4c3;
-  width: 100vw;
+}
+
+.selecteddatasetpagemain-header {
+  display: inline-block;
+}
+
+.selecteddataset-contentdiv input {
+  display: flex;
+  margin-top: 5px;
+  width: 80%;
+  font-weight: bold;
+  font-size: large;
+}
+
+.selecteddatasetpagemain-contentdiv label {
+  font-weight: bold;
+  font-size: medium;
+  margin-top: 5px;
+  color: white;
+}
+
+.selecteddatasetpagemain-contentelement-buttonsdiv {
+  display: flex;
+  justify-content: center;
+}
+
+.selecteddatasetpagemain-contentelement-buttonsdiv button {
+  margin-top: 10px;
+}
+
+.selecteddataset-contentdiv {
+  background-color: #4f576c;
+  border-radius: 10px;
+  border: solid black;
+  /* display: grid; */
+  align-items: center;
+  height: 40vh;
+  width: 30vw;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.selecteddataset-accountdetails {
+  grid-area: account;
+}
+
+.selecteddataset-wrapup {
+  grid-area: wrapup;
+}
+
+.selecteddatasetpagemain-contentdiv div {
+  justify-content: center;
+}
+
+.selecteddatasetpagemain-formelement {
+  margin-left: 20px;
+}
+
+.selecteddatasetpagemain-contentdiv-header {
+  background-color: #c2c4c3;
+  text-align: center;
+  font-weight: bolder;
+  font-size: large;
+  color: black;
+  margin-bottom: 5vh;
+}
+
+.wrapup {
+  grid-area: wrapup;
+}
+
+.selecteddataset-wrapupbtndiv {
+  display: flex;
+  justify-content: center;
+  width: 95%;
+}
+
+.selecteddataset-wrapupbtndiv button {
+  margin-top: 20px;
+  margin-left: 5vw;
+  margin-right: 5vw;
 }

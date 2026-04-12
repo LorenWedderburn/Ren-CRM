@@ -26,22 +26,9 @@ function ElementText(element: string): string | undefined {
 }
 
 function DataSetPanelElement({ element }: elementData) {
-  //const [searchParams, setSearchParams] = useSearchParams();
-
-  // function handleParams(): void {
-  //   setSearchParams({ filter: element });
-  //   console.log("Hello I'm handle params");
-  // }
-
   return (
     <>
-      <Link
-        onClick={() => {
-          // handleParams();
-        }}
-        to={`datasetpage/${element}`}
-        className="datasetpanel-div"
-      >
+      <Link to={`${element}`} className="datasetpanel-div">
         {ElementText(element)}
       </Link>
     </>

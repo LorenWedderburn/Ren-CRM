@@ -46,8 +46,8 @@ function App() {
                   element={<Contacts userData={userData} />}
                 />
                 <Route
-                  path="datasetpage/:selectedData"
-                  element={<SelectedDataSetPage />}
+                  path="/:selectedData"
+                  element={<SelectedDataSetPage userData={userData} />}
                 />
               </Routes>
             </div>

@@ -4,9 +4,9 @@ export interface Contact {
   jobTitle: string;
   email: string;
   contactNumber: string;
-  age: number;
-  id: number;
-  dataSet: string[];
+  age?: number;
+  id?: number;
+  dataSet?: string[];
 }
 
 export interface LoginDetails {

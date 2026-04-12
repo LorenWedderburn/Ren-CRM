@@ -71,6 +71,7 @@ export default function Login({ handleLogin, handleUserData }: Login) {
             minLength={4}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            autoComplete="off"
           />
         </div>
         <div className="submit-div">
