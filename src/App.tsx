@@ -1,3 +1,4 @@
+import "react-day-picker/style.css";
 import { BrowserRouter, Route, Routes } from "react-router";
 import AppMain from "./AppMain";
 import Header from "./Fixtures/Header";

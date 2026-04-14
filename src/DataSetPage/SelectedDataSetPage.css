@@ -94,3 +94,19 @@
   margin-left: 5vw;
   margin-right: 5vw;
 }
+
+.rdp-root {
+  --rdp-accent-color: #c2c4c3; /* Change the accent color to indigo. */
+  --rdp-accent-background-color: #f0f0f0;
+  --rdp-day-height: 30px;
+  --rdp-day-width: 30px;
+  --rdp-day_button-height: 30px;
+  --rdp-day_button-width: 30px;
+  background-color: whitesmoke;
+  width: 13vw;
+  border-radius: 10px;
+}
+
+.mystyle {
+  background-color: red;
+}

@@ -32,17 +32,28 @@ export default function Login({ handleLogin, handleUserData }: Login) {
   }
 
   function findUsername(): void {
+    const currentPassword = password; // capture before any state updates
+    const currentUsername = username;
+
     searchUserName = loginBank.filter(
-      (currentUser) => currentUser.username === username,
+      (currentUser) => currentUser.username === currentUsername,
     );
-    setUsername("");
-    setPassword("");
+
+    if (searchUserName.length === 0) {
+      alert("Username not found.");
+      return;
+    }
+
     console.log(searchUserName);
-    getUserData();
-    if (password === searchUserName[0].password) {
+
+    if (currentPassword === searchUserName[0].password) {
+      getUserData();
       handleLogin();
+      setUsername("");
+      setPassword("");
     } else {
       alert("Incorrect Login Details!");
+      setPassword("");
     }
   }
 

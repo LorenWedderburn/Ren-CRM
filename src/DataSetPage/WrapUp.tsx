@@ -1,4 +1,10 @@
+import { useState } from "react";
+import { DayPicker } from "react-day-picker";
+
 function WrapUp() {
+  const [selected, setSelected] = useState<Date>();
+  // const defaultClassNames = getDefaultClassNames();
+
   return (
     <div className="selecteddataset-contentdiv selecteddataset-wrapup">
       <div>
@@ -6,8 +12,19 @@ function WrapUp() {
       </div>
       <form>
         <div className="selecteddatasetpagemain-formelement">
-          <label htmlFor="date">Date:</label>
-          <input value={""} name="date" autoComplete="off"></input>
+          <DayPicker
+            className="rdp-root"
+            animate
+            navLayout="around"
+            mode="single"
+            selected={selected}
+            onSelect={setSelected}
+            footer={
+              selected
+                ? `Selected: ${selected.toLocaleDateString()}`
+                : "Pick a day"
+            }
+          />
         </div>
         <div className="selecteddatasetpagemain-formelement">
           <label htmlFor="response">Response:</label>
