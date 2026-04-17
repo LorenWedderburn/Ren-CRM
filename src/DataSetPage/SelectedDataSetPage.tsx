@@ -1,4 +1,4 @@
-import "./SelectedDataSetPage.css";
+import "./SelectedDataSetPage.module.css";
 import AccountDetails from "./AccountDetails";
 import { type Contact } from "../LoginData";
 import { useParams } from "react-router";

@@ -1,0 +1,96 @@
+#calendarimage {
+  display: flex;
+  height: 50px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.wrapper button {
+  margin-top: 20px;
+}
+
+.formelement {
+  margin-left: 20px;
+}
+
+.formelement_daypicker {
+  display: flex;
+  justify-content: center;
+}
+
+.formelement_submitbtn {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+#btn_save {
+  margin-right: 5px;
+}
+
+#btn_saveacc {
+  margin-left: 5px;
+}
+
+.contentdiv {
+  background-color: #4f576c;
+  border-radius: 10px;
+  border: solid black;
+  align-items: center;
+  height: 45vh;
+  width: 35vw;
+  margin-left: auto;
+  margin-right: auto;
+  grid-area: wrapup;
+}
+
+.contentdiv_header {
+  background-color: #c2c4c3;
+  text-align: center;
+  font-weight: bolder;
+  font-size: large;
+  color: black;
+  margin-bottom: 0.5vh;
+}
+
+#dropdown_response {
+  width: 20vw;
+  height: 25px;
+}
+
+.rdp_root {
+  --rdp-accent-color: #3d3c38;
+  ---rdp-day-height: 3vh;
+  --rdp-day-width: 3vw;
+  --rdp-day_button-height: 3vh;
+  --rdp-day_button-width: 3vw;
+  --rdp-today-color: red;
+  background-color: #c2c4c3;
+  border-radius: 10px;
+}
+
+.submit_div {
+  display: flex;
+  justify-content: center;
+}
+
+#submit {
+  border-radius: 5px;
+}
+
+.wrapup_wrapper {
+  margin-top: 5vh;
+}
+
+.formelement_time {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+#time {
+  width: 6vw;
+}

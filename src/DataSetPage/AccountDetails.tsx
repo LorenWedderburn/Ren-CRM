@@ -1,3 +1,7 @@
+import "./SelectedDataSetPage.module.css";
+import styles from "./AccountDetails.module.css";
+//import styles from "./WrapUp.module.css";
+
 type AccountDetailsDataset = {
   companyName: string;
   address: string;
@@ -28,15 +32,13 @@ function AccountDetails({
   handleSetTelephone,
 }: AccountDetailsDataset) {
   return (
-    <div className="selecteddataset-contentdiv selecteddataset-accountdetails">
+    <div className={styles.contentdiv}>
       <div>
-        <div className="selecteddatasetpagemain-contentdiv-header">
-          Account Details
-        </div>
+        <div className={styles.contentdiv_header}>Account Details</div>
       </div>
       <form>
-        <div className="selecteddatasetpagemain-formelement">
-          <label htmlFor="companyName">Company Name:</label>
+        <div className={styles.formelement}>
+          <label htmlFor="companyName">Company Name</label>
           <input
             value={companyName}
             onChange={(e) => handleSetCompanyName(e.target.value)}
@@ -44,8 +46,8 @@ function AccountDetails({
             autoComplete="off"
           ></input>
         </div>
-        <div className="selecteddatasetpagemain-formelement">
-          <label htmlFor="address">Address:</label>
+        <div className={styles.formelement}>
+          <label htmlFor="address">Address</label>
           <input
             value={address}
             onChange={(e) => handleSetAddress(e.target.value)}
@@ -53,8 +55,8 @@ function AccountDetails({
             autoComplete="off"
           ></input>
         </div>
-        <div className="selecteddatasetpagemain-formelement">
-          <label htmlFor="town">Town:</label>
+        <div className={styles.formelement}>
+          <label htmlFor="town">Town</label>
           <input
             value={town}
             onChange={(e) => handleSetTown(e.target.value)}
@@ -62,8 +64,8 @@ function AccountDetails({
             autoComplete="off"
           ></input>
         </div>
-        <div className="selecteddatasetpagemain-formelement">
-          <label htmlFor="county">County:</label>
+        <div className={styles.formelement}>
+          <label htmlFor="county">County</label>
           <input
             value={county}
             onChange={(e) => handleSetCounty(e.target.value)}
@@ -71,8 +73,8 @@ function AccountDetails({
             autoComplete="off"
           ></input>
         </div>
-        <div className="selecteddatasetpagemain-formelement">
-          <label htmlFor="postcode">Postcode:</label>
+        <div className={styles.formelement}>
+          <label htmlFor="postcode">Postcode</label>
           <input
             value={postcode}
             onChange={(e) => handleSetPostcode(e.target.value)}
@@ -80,8 +82,8 @@ function AccountDetails({
             autoComplete="off"
           ></input>
         </div>
-        <div className="selecteddatasetpagemain-formelement">
-          <label htmlFor="telephone">Telephone:</label>
+        <div className={styles.formelement}>
+          <label htmlFor="telephone">Telephone</label>
           <input
             value={telephone}
             onChange={(e) => handleSetTelephone(e.target.value)}
