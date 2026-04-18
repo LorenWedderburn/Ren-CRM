@@ -3,19 +3,25 @@ import { DayPicker } from "react-day-picker";
 import "./SelectedDataSetPage.module.css";
 import styles from "./WrapUp.module.css";
 import { isBefore } from "date-fns";
+import { type CompanyDataSet, type CallLog } from "../DataSetData";
 
-function WrapUp() {
+type currentCompany = {
+  currentCompany: CompanyDataSet;
+};
+
+function WrapUp({ currentCompany }: currentCompany) {
   // Presentation state and data
   const [datePickerVisible, setDatePickerVisible] = useState(false);
   const [notes, setNotes] = useState<string>("");
+  const [pickedDate, setPickedDate] = useState<string>("");
+  const [pickedTime, setPickedTime] = useState<string>("");
+  const [response, setResponse] = useState<string>("");
 
   // Date and time state and data
   const currentDate = new Date(); // The current IRL calendar date
   const [selected, setSelected] = useState<Date>(); // The date that the user picks on the date picker
-  const [pickedDate, setPickedDate] = useState<string>("");
-  const [pickedTime, setPickedTime] = useState<string>("");
 
-  function CloseDatePicker(): void {
+  function closeDatePicker(): void {
     setDatePickerVisible((curr) => (curr = !curr));
   }
 
@@ -23,26 +29,73 @@ function WrapUp() {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ): void {
     e.preventDefault();
-    console.log("its me handle save and log");
+    switch (response) {
+      case "Not In":
+        createCallLog();
+        break;
+      case "Not Interested":
+        createCallLog();
+        break;
+      case "Opportunity":
+        if (pickedDate === "") {
+          alert("Please pick a date");
+          break;
+        } else {
+          createCallLog();
+          break;
+        }
+      case "Call Back":
+        if (pickedDate === "") {
+          alert("Please pick a date");
+          break;
+        } else {
+          createCallLog();
+          break;
+        }
+      default:
+        console.log("The rest havent been done yet");
+        break;
+    }
   }
 
-  function DateSubmit(
+  function createCallLog(): void {
+    let currentCallLog: CallLog;
+
+    if (pickedDate === "") {
+      currentCallLog = {
+        contact: "default",
+        currentCallDate: currentDate,
+        responseType: response,
+        notes: notes,
+      };
+    } else {
+      currentCallLog = {
+        contact: "default",
+        currentCallDate: currentDate,
+        appointmentCallDate: pickedDate,
+        responseType: response,
+        notes: notes,
+      };
+    }
+
+    currentCompany.callLogs.push(currentCallLog);
+    setNotes("");
+  }
+
+  function dateSubmit(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ): void {
     e.preventDefault();
-    console.log(currentDate);
-    console.log(selected);
-    console.log(pickedTime);
 
     // if no date is picked close the calendar
     if (selected === undefined) {
-      CloseDatePicker();
+      closeDatePicker();
       return;
     }
 
     // if no time is picked close the calendar
     if (pickedTime === "") {
-      CloseDatePicker();
+      closeDatePicker();
       return;
     }
 
@@ -52,11 +105,10 @@ function WrapUp() {
     }
 
     const dDate: string = selected.toDateString();
-    const newDate: string = `${dDate}, ${pickedTime}`;
+    const newDate: string = `${dDate} ${pickedTime} GMT`;
     setPickedDate(newDate);
-    console.log(newDate);
 
-    CloseDatePicker();
+    closeDatePicker();
   }
 
   return (
@@ -71,7 +123,7 @@ function WrapUp() {
               <button
                 id={styles.submit}
                 onClick={(e) => {
-                  DateSubmit(e);
+                  dateSubmit(e);
                 }}
               >
                 submit
@@ -116,7 +168,13 @@ function WrapUp() {
                   <label htmlFor="response" id={styles.label_response}>
                     Response
                   </label>
-                  <select id={styles.dropdown_response} name="reponse">
+                  <select
+                    id={styles.dropdown_response}
+                    name="reponse"
+                    onChange={(e) => setResponse(e.target.value)}
+                    value={response}
+                  >
+                    <option value="">--Select--</option>
                     <option value="Opportunity">Opportunity</option>
                     <option value="Call Back">Call Back</option>
                     <option value="Not In">Not in</option>
@@ -144,6 +202,7 @@ function WrapUp() {
                   onClick={(e) => {
                     handleSaveAndLog(e);
                   }}
+                  disabled={response === "" ? true : false}
                 >
                   Save and Log
                 </button>
@@ -153,6 +212,7 @@ function WrapUp() {
                     e.preventDefault();
                     console.log("Save Account");
                   }}
+                  disabled={response === "" ? true : false}
                 >
                   Only Save Account
                 </button>

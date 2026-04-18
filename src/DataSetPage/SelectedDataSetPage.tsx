@@ -90,7 +90,7 @@ function SelectedDataSetPage({ userData }: UserData) {
         handleSetPostcode={handleSetPostcode}
         handleSetTelephone={handleSetTelephone}
       />
-      <WrapUp />
+      <WrapUp currentCompany={selectedDataSet} />
     </div>
   );
 }

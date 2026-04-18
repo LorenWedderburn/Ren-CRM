@@ -1,6 +1,6 @@
 import { type Contact } from "./LoginData";
 
-export interface CompanyDataSet {
+export type CompanyDataSet = {
   companyName: string;
   address: string;
   town: string;
@@ -8,7 +8,16 @@ export interface CompanyDataSet {
   postcode: string;
   telephone: string;
   employees: Contact[];
-}
+  callLogs: CallLog[];
+};
+
+export type CallLog = {
+  contact: string;
+  currentCallDate: Date;
+  appointmentCallDate?: string;
+  responseType: string;
+  notes: string;
+};
 
 export const houseBuilders: CompanyDataSet[] = [
   {
@@ -34,6 +43,7 @@ export const houseBuilders: CompanyDataSet[] = [
         contactNumber: "09811384512",
       },
     ],
+    callLogs: [],
   },
   {
     companyName: "BuildLife",
@@ -58,6 +68,7 @@ export const houseBuilders: CompanyDataSet[] = [
         contactNumber: "09811384512",
       },
     ],
+    callLogs: [],
   },
   {
     companyName: "In Da House",
@@ -89,6 +100,7 @@ export const houseBuilders: CompanyDataSet[] = [
         contactNumber: "09887565321",
       },
     ],
+    callLogs: [],
   },
   {
     companyName: "Apex Builders",
@@ -113,6 +125,7 @@ export const houseBuilders: CompanyDataSet[] = [
         contactNumber: "09889372391",
       },
     ],
+    callLogs: [],
   },
   {
     companyName: "Grafton D&B",
@@ -130,6 +143,7 @@ export const houseBuilders: CompanyDataSet[] = [
         contactNumber: "0998790761",
       },
     ],
+    callLogs: [],
   },
 ];
 
@@ -157,6 +171,7 @@ export const landscapers: CompanyDataSet[] = [
         contactNumber: "0900198231",
       },
     ],
+    callLogs: [],
   },
   {
     companyName: "Land Ho",
@@ -174,6 +189,7 @@ export const landscapers: CompanyDataSet[] = [
         contactNumber: "091212123114",
       },
     ],
+    callLogs: [],
   },
   {
     companyName: "Landscapes by Doug Housen",
@@ -198,6 +214,7 @@ export const landscapers: CompanyDataSet[] = [
         contactNumber: "09811567321",
       },
     ],
+    callLogs: [],
   },
   {
     companyName: "Crannull",
@@ -222,6 +239,7 @@ export const landscapers: CompanyDataSet[] = [
         contactNumber: "09338542631",
       },
     ],
+    callLogs: [],
   },
   {
     companyName: "Nottingham Reforresters",
@@ -246,6 +264,7 @@ export const landscapers: CompanyDataSet[] = [
         contactNumber: "09811384512",
       },
     ],
+    callLogs: [],
   },
 ];
 
@@ -273,6 +292,7 @@ export const architects: CompanyDataSet[] = [
         contactNumber: "095656382312",
       },
     ],
+    callLogs: [],
   },
   {
     companyName: "Sketch to It",
@@ -282,6 +302,7 @@ export const architects: CompanyDataSet[] = [
     postcode: "E15 F67",
     telephone: "01787 124342",
     employees: [],
+    callLogs: [],
   },
   {
     companyName: "Taverton Architects",
@@ -291,6 +312,7 @@ export const architects: CompanyDataSet[] = [
     postcode: "NE1 4GY",
     telephone: "0208 895123",
     employees: [],
+    callLogs: [],
   },
   {
     companyName: "Sandrina Designs",
@@ -322,6 +344,7 @@ export const architects: CompanyDataSet[] = [
         contactNumber: "0918234672312",
       },
     ],
+    callLogs: [],
   },
   {
     companyName: "John Huston & Major",
@@ -346,6 +369,7 @@ export const architects: CompanyDataSet[] = [
         contactNumber: "098113845623",
       },
     ],
+    callLogs: [],
   },
 ];
 
@@ -373,6 +397,7 @@ export const mepContractors: CompanyDataSet[] = [
         contactNumber: "09811384123",
       },
     ],
+    callLogs: [],
   },
   {
     companyName: "Quartzelec",
@@ -382,6 +407,7 @@ export const mepContractors: CompanyDataSet[] = [
     postcode: "NW1 F67",
     telephone: "01367 542246",
     employees: [],
+    callLogs: [],
   },
   {
     companyName: "Dougle MEP",
@@ -391,6 +417,7 @@ export const mepContractors: CompanyDataSet[] = [
     postcode: "LU1 4JD",
     telephone: "01582 232609",
     employees: [],
+    callLogs: [],
   },
   {
     companyName: "Spark Right MEP Contracting",
@@ -415,6 +442,7 @@ export const mepContractors: CompanyDataSet[] = [
         contactNumber: "0981153212",
       },
     ],
+    callLogs: [],
   },
   {
     companyName: "Darke & Taylor",
@@ -432,5 +460,6 @@ export const mepContractors: CompanyDataSet[] = [
         contactNumber: "09881744556",
       },
     ],
+    callLogs: [],
   },
 ];

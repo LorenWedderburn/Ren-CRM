@@ -1,4 +1,4 @@
-export interface Contact {
+export type Contact = {
   firstName: string;
   secondName: string;
   jobTitle: string;
@@ -7,14 +7,14 @@ export interface Contact {
   age?: number;
   id?: number;
   dataSet?: string[];
-}
+};
 
-export interface LoginDetails {
+export type LoginDetails = {
   username: string;
   password: string;
   accessLevel: "admin" | "normal";
   id: number;
-}
+};
 
 export const loginBank: LoginDetails[] = [
   {

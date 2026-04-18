@@ -5,7 +5,7 @@ type elementData = {
   element: string;
 };
 
-function ElementText(element: string): string | undefined {
+function elementText(element: string): string | undefined {
   let dataSetType: string | undefined;
   switch (element) {
     case "house builders":
@@ -29,7 +29,7 @@ function DataSetPanelElement({ element }: elementData) {
   return (
     <>
       <Link to={`${element}`} className="datasetpanel-div">
-        {ElementText(element)}
+        {elementText(element)}
       </Link>
     </>
   );

@@ -27,7 +27,7 @@ function App() {
       <BrowserRouter>
         {login === false ? (
           <>
-            <Header login={login} userData={userData} />
+            <Header login={login} />
             <div id="app">
               <Login
                 handleLogin={handleLogin}

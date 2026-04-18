@@ -3,7 +3,7 @@ import { type Contact } from "../LoginData";
 import Logo from "./Logo";
 
 type UserData = {
-  userData: Contact;
+  userData?: Contact;
   login: boolean;
 };
 
@@ -16,8 +16,8 @@ function Header({ userData, login }: UserData) {
         <>
           <div className={login ? "userinfo-div" : ""}>
             <div className="userinfo-textboxes">
-              <div className="userinfo-text">{`${userData.firstName}`}</div>
-              <div className="userinfo-text">{`${userData.jobTitle}`}</div>
+              <div className="userinfo-text">{`${userData?.firstName}`}</div>
+              <div className="userinfo-text">{`${userData?.jobTitle}`}</div>
             </div>
           </div>
         </>

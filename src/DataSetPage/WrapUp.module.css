@@ -94,3 +94,7 @@
 #time {
   width: 6vw;
 }
+
+textarea {
+  resize: none;
+}
