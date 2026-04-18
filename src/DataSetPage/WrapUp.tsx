@@ -7,9 +7,10 @@ import { type CompanyDataSet, type CallLog } from "../DataSetData";
 
 type currentCompany = {
   currentCompany: CompanyDataSet;
+  currentCompanyCallLogs: () => void;
 };
 
-function WrapUp({ currentCompany }: currentCompany) {
+function WrapUp({ currentCompany, currentCompanyCallLogs }: currentCompany) {
   // Presentation state and data
   const [datePickerVisible, setDatePickerVisible] = useState(false);
   const [notes, setNotes] = useState<string>("");
@@ -210,7 +211,7 @@ function WrapUp({ currentCompany }: currentCompany) {
                   id={styles.btn_saveacc}
                   onClick={(e) => {
                     e.preventDefault();
-                    console.log("Save Account");
+                    currentCompanyCallLogs();
                   }}
                   disabled={response === "" ? true : false}
                 >

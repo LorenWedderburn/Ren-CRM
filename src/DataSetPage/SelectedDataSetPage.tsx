@@ -63,6 +63,10 @@ function SelectedDataSetPage({ userData }: UserData) {
     setTelephone(telephone);
   }
 
+  function currentCompanyCallLogs(): void {
+    console.log(selectedDataSet.callLogs);
+  }
+
   const param = useParams();
   const selectedDataSet = formatParam(param.selectedData);
   const [companyName, setCompanyName] = useState<string>(
@@ -90,7 +94,10 @@ function SelectedDataSetPage({ userData }: UserData) {
         handleSetPostcode={handleSetPostcode}
         handleSetTelephone={handleSetTelephone}
       />
-      <WrapUp currentCompany={selectedDataSet} />
+      <WrapUp
+        currentCompany={selectedDataSet}
+        currentCompanyCallLogs={currentCompanyCallLogs}
+      />
     </div>
   );
 }
