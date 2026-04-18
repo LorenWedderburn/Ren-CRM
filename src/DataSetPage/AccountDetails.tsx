@@ -1,36 +1,59 @@
 import "./SelectedDataSetPage.module.css";
 import styles from "./AccountDetails.module.css";
-//import styles from "./WrapUp.module.css";
+import { useState } from "react";
+import { type CompanyDataSet } from "../DataSetData";
 
-type AccountDetailsDataset = {
-  companyName: string;
-  address: string;
-  town: string;
-  county: string;
-  postcode: string;
-  telephone: string;
-  handleSetCompanyName: (value: string) => void;
-  handleSetAddress: (value: string) => void;
-  handleSetTown: (value: string) => void;
-  handleSetCounty: (value: string) => void;
-  handleSetPostcode: (value: string) => void;
-  handleSetTelephone: (value: string) => void;
+type currentCompany = {
+  currentCompany: CompanyDataSet;
+  handleSetAccountDetailsChanged: (state: boolean) => void;
 };
 
 function AccountDetails({
-  companyName,
-  address,
-  town,
-  county,
-  postcode,
-  telephone,
-  handleSetCompanyName,
-  handleSetAddress,
-  handleSetTown,
-  handleSetCounty,
-  handleSetPostcode,
-  handleSetTelephone,
-}: AccountDetailsDataset) {
+  currentCompany,
+  handleSetAccountDetailsChanged,
+}: currentCompany) {
+  const initCompanyName: string = companyName;
+  const initAddress: string = address;
+  const initTown: string = town;
+  const initCounty: string = county;
+  const initPostcode: string = postcode;
+  const initTelephone: string = telephone;
+
+  function compareCompanyDetails(attribue: string): void {
+    switch (attribue) {
+      case companyName:
+        if (companyName == initCompanyName) {
+          handleSetAccountDetailsChanged(true);
+        }
+        break;
+      case address:
+        if (address === initAddress) {
+          handleSetAccountDetailsChanged(true);
+        }
+        break;
+      case town:
+        if (town === initTown) {
+          handleSetAccountDetailsChanged(true);
+        }
+        break;
+      case county:
+        if (county === initCounty) {
+          handleSetAccountDetailsChanged(true);
+        }
+        break;
+      case postcode:
+        if (postcode === initPostcode) {
+          handleSetAccountDetailsChanged(true);
+        }
+        break;
+      case telephone:
+        if (telephone === initTelephone) {
+          handleSetAccountDetailsChanged(true);
+        }
+        break;
+    }
+  }
+
   return (
     <div className={styles.contentdiv}>
       <div>
@@ -41,7 +64,10 @@ function AccountDetails({
           <label htmlFor="companyName">Company Name</label>
           <input
             value={companyName}
-            onChange={(e) => handleSetCompanyName(e.target.value)}
+            onChange={(e) => {
+              setCompanyName(e.target.value);
+              compareCompanyDetails(companyName);
+            }}
             name="companyName"
             autoComplete="off"
           ></input>
@@ -50,7 +76,10 @@ function AccountDetails({
           <label htmlFor="address">Address</label>
           <input
             value={address}
-            onChange={(e) => handleSetAddress(e.target.value)}
+            onChange={(e) => {
+              setAddress(e.target.value);
+              compareCompanyDetails(companyName);
+            }}
             name="address"
             autoComplete="off"
           ></input>
@@ -59,7 +88,10 @@ function AccountDetails({
           <label htmlFor="town">Town</label>
           <input
             value={town}
-            onChange={(e) => handleSetTown(e.target.value)}
+            onChange={(e) => {
+              setTown(e.target.value);
+              compareCompanyDetails(companyName);
+            }}
             name="town"
             autoComplete="off"
           ></input>
@@ -68,7 +100,10 @@ function AccountDetails({
           <label htmlFor="county">County</label>
           <input
             value={county}
-            onChange={(e) => handleSetCounty(e.target.value)}
+            onChange={(e) => {
+              setCounty(e.target.value);
+              compareCompanyDetails(companyName);
+            }}
             name="county"
             autoComplete="off"
           ></input>
@@ -77,7 +112,10 @@ function AccountDetails({
           <label htmlFor="postcode">Postcode</label>
           <input
             value={postcode}
-            onChange={(e) => handleSetPostcode(e.target.value)}
+            onChange={(e) => {
+              setPostcode(e.target.value);
+              compareCompanyDetails(companyName);
+            }}
             name="postcode"
             autoComplete="off"
           ></input>
@@ -86,7 +124,10 @@ function AccountDetails({
           <label htmlFor="telephone">Telephone</label>
           <input
             value={telephone}
-            onChange={(e) => handleSetTelephone(e.target.value)}
+            onChange={(e) => {
+              setTelephone(e.target.value);
+              compareCompanyDetails(companyName);
+            }}
             name="telephone"
             autoComplete="off"
           ></input>

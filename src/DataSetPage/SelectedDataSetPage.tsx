@@ -9,14 +9,30 @@ import {
   houseBuilders,
   landscapers,
 } from "../DataSetData";
-import { useState } from "react";
 import WrapUp from "./WrapUp";
+import { useState } from "react";
 
 type UserData = {
   userData: Contact;
 };
 
 function SelectedDataSetPage({ userData }: UserData) {
+  const [companyName, setCompanyName] = useState<string>(
+    currentCompany.companyName,
+  );
+  const [address, setAddress] = useState<string>(currentCompany.address);
+  const [town, setTown] = useState<string>(currentCompany.town);
+  const [county, setCounty] = useState<string>(currentCompany.county);
+  const [postcode, setPostcode] = useState<string>(currentCompany.postcode);
+  const [telephone, setTelephone] = useState<string>(currentCompany.telephone);
+
+  const [accountDetailsChanged, setAccountDetailsChanged] = useState(false);
+
+  function handleSetAccountDetailsChanged(state: boolean): void {
+    console.log(`hello ${state}`);
+    setAccountDetailsChanged(state);
+  }
+
   function formatParam(dataset: string | undefined): CompanyDataSet {
     let dataSetType: CompanyDataSet;
     switch (dataset) {
@@ -39,58 +55,31 @@ function SelectedDataSetPage({ userData }: UserData) {
     return dataSetType;
   }
 
-  function handleSetCompanyName(companyName: string) {
-    setCompanyName(companyName);
-  }
-
-  function handleSetAddress(address: string) {
-    setAddress(address);
-  }
-
-  function handleSetTown(town: string) {
-    setTown(town);
-  }
-
-  function handleSetCounty(county: string) {
-    setCounty(county);
-  }
-
-  function handleSetPostcode(postcode: string) {
-    setPostcode(postcode);
-  }
-
-  function handleSetTelephone(telephone: string) {
-    setTelephone(telephone);
-  }
-
   const param = useParams();
   const selectedDataSet = formatParam(param.selectedData);
-  const [companyName, setCompanyName] = useState<string>(
-    selectedDataSet.companyName,
-  );
-  const [address, setAddress] = useState<string>(selectedDataSet.address);
-  const [town, setTown] = useState<string>(selectedDataSet.town);
-  const [county, setCounty] = useState<string>(selectedDataSet.county);
-  const [postcode, setPostcode] = useState<string>(selectedDataSet.postcode);
-  const [telephone, setTelephone] = useState<string>(selectedDataSet.telephone);
+
+  function setCurrentCompanyName(event: string): string {
+    selectedDataSet.companyName = event;
+    return selectedDataSet.companyName;
+  }
 
   return (
     <div className="selecteddatasetpagemain-div">
       <AccountDetails
+        currentCompany={selectedDataSet}
         companyName={companyName}
         address={address}
         town={town}
         county={county}
         postcode={postcode}
         telephone={telephone}
-        handleSetCompanyName={handleSetCompanyName}
-        handleSetAddress={handleSetAddress}
-        handleSetTown={handleSetTown}
-        handleSetCounty={handleSetCounty}
-        handleSetPostcode={handleSetPostcode}
-        handleSetTelephone={handleSetTelephone}
+        setCompanyName={setCompanyName}
+        handleSetAccountDetailsChanged={handleSetAccountDetailsChanged}
       />
-      <WrapUp currentCompany={selectedDataSet} />
+      <WrapUp
+        currentCompany={selectedDataSet}
+        accountDetailsChanged={accountDetailsChanged}
+      />
     </div>
   );
 }

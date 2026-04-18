@@ -7,9 +7,10 @@ import { type CompanyDataSet, type CallLog } from "../DataSetData";
 
 type currentCompany = {
   currentCompany: CompanyDataSet;
+  accountDetailsChanged: boolean;
 };
 
-function WrapUp({ currentCompany }: currentCompany) {
+function WrapUp({ currentCompany, accountDetailsChanged }: currentCompany) {
   // Presentation state and data
   const [datePickerVisible, setDatePickerVisible] = useState(false);
   const [notes, setNotes] = useState<string>("");
@@ -56,6 +57,10 @@ function WrapUp({ currentCompany }: currentCompany) {
         console.log("The rest havent been done yet");
         break;
     }
+  }
+
+  function handleOnlySaveAccount(): void {
+    console.log("hello its me handleOnlySaveAccount");
   }
 
   function createCallLog(): void {
@@ -210,9 +215,9 @@ function WrapUp({ currentCompany }: currentCompany) {
                   id={styles.btn_saveacc}
                   onClick={(e) => {
                     e.preventDefault();
-                    console.log("Save Account");
+                    handleOnlySaveAccount();
                   }}
-                  disabled={response === "" ? true : false}
+                  disabled={accountDetailsChanged === false ? true : false}
                 >
                   Only Save Account
                 </button>
