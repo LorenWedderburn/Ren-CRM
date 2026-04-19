@@ -6,7 +6,7 @@ import { isBefore } from "date-fns";
 import { type CompanyDataSet, type CallLog } from "../DataSetData";
 
 type currentCompany = {
-  currentCompany: CompanyDataSet;
+  currentCompany: CompanyDataSet[];
   currentCompanyCallLogs: () => void;
 };
 
@@ -79,7 +79,7 @@ function WrapUp({ currentCompany, currentCompanyCallLogs }: currentCompany) {
       };
     }
 
-    currentCompany.callLogs.push(currentCallLog);
+    currentCompany[0].callLogs.push(currentCallLog);
     setNotes("");
   }
 

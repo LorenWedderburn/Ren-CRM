@@ -17,23 +17,23 @@ type UserData = {
 };
 
 function SelectedDataSetPage({ userData }: UserData) {
-  function formatParam(dataset: string | undefined): CompanyDataSet {
-    let dataSetType: CompanyDataSet;
+  function formatParam(dataset: string | undefined): CompanyDataSet[] {
+    let dataSetType: CompanyDataSet[];
     switch (dataset) {
       case "house builders":
-        dataSetType = houseBuilders[0];
+        dataSetType = [...houseBuilders];
         break;
       case "landscapers":
-        dataSetType = landscapers[0];
+        dataSetType = [...landscapers];
         break;
       case "architects":
-        dataSetType = architects[0];
+        dataSetType = [...architects];
         break;
       case "MEP":
-        dataSetType = mepContractors[0];
+        dataSetType = [...mepContractors];
         break;
       default:
-        dataSetType = mepContractors[0];
+        dataSetType = [...mepContractors];
     }
 
     return dataSetType;
@@ -64,19 +64,21 @@ function SelectedDataSetPage({ userData }: UserData) {
   }
 
   function currentCompanyCallLogs(): void {
-    console.log(selectedDataSet.callLogs);
+    console.log(selectedDataSet[0].callLogs);
   }
 
   const param = useParams();
   const selectedDataSet = formatParam(param.selectedData);
   const [companyName, setCompanyName] = useState<string>(
-    selectedDataSet.companyName,
+    selectedDataSet[0].companyName,
   );
-  const [address, setAddress] = useState<string>(selectedDataSet.address);
-  const [town, setTown] = useState<string>(selectedDataSet.town);
-  const [county, setCounty] = useState<string>(selectedDataSet.county);
-  const [postcode, setPostcode] = useState<string>(selectedDataSet.postcode);
-  const [telephone, setTelephone] = useState<string>(selectedDataSet.telephone);
+  const [address, setAddress] = useState<string>(selectedDataSet[0].address);
+  const [town, setTown] = useState<string>(selectedDataSet[0].town);
+  const [county, setCounty] = useState<string>(selectedDataSet[0].county);
+  const [postcode, setPostcode] = useState<string>(selectedDataSet[0].postcode);
+  const [telephone, setTelephone] = useState<string>(
+    selectedDataSet[0].telephone,
+  );
 
   return (
     <div className="selecteddatasetpagemain-div">
