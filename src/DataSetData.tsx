@@ -1,6 +1,7 @@
 import { type Contact } from "./LoginData";
 
 export type CompanyDataSet = {
+  id: number;
   companyName: string;
   address: string;
   town: string;
@@ -21,6 +22,7 @@ export type CallLog = {
 
 export const houseBuilders: CompanyDataSet[] = [
   {
+    id: 1,
     companyName: "Newton Homes",
     address: "14 Down Street",
     town: "Liverpool",
@@ -46,6 +48,7 @@ export const houseBuilders: CompanyDataSet[] = [
     callLogs: [],
   },
   {
+    id: 2,
     companyName: "BuildLife",
     address: "Custard House",
     town: "Manchester",
@@ -71,6 +74,7 @@ export const houseBuilders: CompanyDataSet[] = [
     callLogs: [],
   },
   {
+    id: 3,
     companyName: "In Da House",
     address: "Jansel House",
     town: "Luton",
@@ -103,6 +107,7 @@ export const houseBuilders: CompanyDataSet[] = [
     callLogs: [],
   },
   {
+    id: 4,
     companyName: "Apex Builders",
     address: "17 Cromprex Street",
     town: "Norwich",
@@ -128,6 +133,7 @@ export const houseBuilders: CompanyDataSet[] = [
     callLogs: [],
   },
   {
+    id: 5,
     companyName: "Grafton D&B",
     address: "Bawden Road",
     town: "Luton",
@@ -149,6 +155,7 @@ export const houseBuilders: CompanyDataSet[] = [
 
 export const landscapers: CompanyDataSet[] = [
   {
+    id: 1,
     companyName: "Green Thumb",
     address: "123 Grasshill",
     town: "Scunthorpe",
@@ -174,6 +181,7 @@ export const landscapers: CompanyDataSet[] = [
     callLogs: [],
   },
   {
+    id: 2,
     companyName: "Land Ho",
     address: "Burgess Hill",
     town: "London",
@@ -192,6 +200,7 @@ export const landscapers: CompanyDataSet[] = [
     callLogs: [],
   },
   {
+    id: 3,
     companyName: "Landscapes by Doug Housen",
     address: "12 Howton Lane",
     town: "Hull",
@@ -217,6 +226,7 @@ export const landscapers: CompanyDataSet[] = [
     callLogs: [],
   },
   {
+    id: 4,
     companyName: "Crannull",
     address: "18 Sugar Loaf Hill",
     town: "Luton",
@@ -242,6 +252,7 @@ export const landscapers: CompanyDataSet[] = [
     callLogs: [],
   },
   {
+    id: 5,
     companyName: "Nottingham Reforresters",
     address: "New Green Forrest",
     town: "Nottingham Forrest",
@@ -270,6 +281,7 @@ export const landscapers: CompanyDataSet[] = [
 
 export const architects: CompanyDataSet[] = [
   {
+    id: 1,
     companyName: "Block by block",
     address: "45 Albert Road",
     town: "Southampton",
@@ -295,6 +307,7 @@ export const architects: CompanyDataSet[] = [
     callLogs: [],
   },
   {
+    id: 2,
     companyName: "Sketch to It",
     address: "21 Guyford Lane",
     town: "Edinburgh",
@@ -305,6 +318,7 @@ export const architects: CompanyDataSet[] = [
     callLogs: [],
   },
   {
+    id: 3,
     companyName: "Taverton Architects",
     address: "78 Chancery Lane",
     town: "London",
@@ -315,6 +329,7 @@ export const architects: CompanyDataSet[] = [
     callLogs: [],
   },
   {
+    id: 4,
     companyName: "Sandrina Designs",
     address: "101 Bovingdon Street",
     town: "York",
@@ -347,6 +362,7 @@ export const architects: CompanyDataSet[] = [
     callLogs: [],
   },
   {
+    id: 5,
     companyName: "John Huston & Major",
     address: "18 Oxford Street",
     town: "Middlesbrough",
@@ -375,6 +391,7 @@ export const architects: CompanyDataSet[] = [
 
 export const mepContractors: CompanyDataSet[] = [
   {
+    id: 1,
     companyName: "24/7 Electronics",
     address: "12 Lewis Lane",
     town: "Newcastle",
@@ -400,6 +417,7 @@ export const mepContractors: CompanyDataSet[] = [
     callLogs: [],
   },
   {
+    id: 2,
     companyName: "Quartzelec",
     address: "25 Clarke Mews",
     town: "Newcastle",
@@ -410,6 +428,7 @@ export const mepContractors: CompanyDataSet[] = [
     callLogs: [],
   },
   {
+    id: 3,
     companyName: "Dougle MEP",
     address: "The Crescent",
     town: "Luton",
@@ -420,6 +439,7 @@ export const mepContractors: CompanyDataSet[] = [
     callLogs: [],
   },
   {
+    id: 4,
     companyName: "Spark Right MEP Contracting",
     address: "34 Hutch Lane",
     town: "Croydon",
@@ -445,6 +465,7 @@ export const mepContractors: CompanyDataSet[] = [
     callLogs: [],
   },
   {
+    id: 5,
     companyName: "Darke & Taylor",
     address: "11 Radiant House, Blenheim Office Park",
     town: "Hanborough",

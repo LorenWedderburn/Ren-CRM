@@ -1,14 +1,17 @@
 import "./SelectedDataSetPage.module.css";
 import styles from "./AccountDetails.module.css";
+import { type CompanyDataSet } from "../DataSetData";
 //import styles from "./WrapUp.module.css";
 
 type AccountDetailsDataset = {
-  companyName: string;
-  address: string;
-  town: string;
-  county: string;
-  postcode: string;
-  telephone: string;
+  currentDataSet: CompanyDataSet[];
+  currentRecord: number;
+  // companyName: string;
+  // address: string;
+  // town: string;
+  // county: string;
+  // postcode: string;
+  // telephone: string;
   handleSetCompanyName: (value: string) => void;
   handleSetAddress: (value: string) => void;
   handleSetTown: (value: string) => void;
@@ -18,12 +21,14 @@ type AccountDetailsDataset = {
 };
 
 function AccountDetails({
-  companyName,
-  address,
-  town,
-  county,
-  postcode,
-  telephone,
+  currentDataSet,
+  currentRecord,
+  // companyName,
+  // address,
+  // town,
+  // county,
+  // postcode,
+  // telephone,
   handleSetCompanyName,
   handleSetAddress,
   handleSetTown,
@@ -40,7 +45,7 @@ function AccountDetails({
         <div className={styles.formelement}>
           <label htmlFor="companyName">Company Name</label>
           <input
-            value={companyName}
+            value={currentDataSet[currentRecord].companyName}
             onChange={(e) => handleSetCompanyName(e.target.value)}
             name="companyName"
             autoComplete="off"
@@ -49,7 +54,7 @@ function AccountDetails({
         <div className={styles.formelement}>
           <label htmlFor="address">Address</label>
           <input
-            value={address}
+            value={currentDataSet[currentRecord].address}
             onChange={(e) => handleSetAddress(e.target.value)}
             name="address"
             autoComplete="off"
@@ -58,7 +63,7 @@ function AccountDetails({
         <div className={styles.formelement}>
           <label htmlFor="town">Town</label>
           <input
-            value={town}
+            value={currentDataSet[currentRecord].town}
             onChange={(e) => handleSetTown(e.target.value)}
             name="town"
             autoComplete="off"
@@ -67,7 +72,7 @@ function AccountDetails({
         <div className={styles.formelement}>
           <label htmlFor="county">County</label>
           <input
-            value={county}
+            value={currentDataSet[currentRecord].county}
             onChange={(e) => handleSetCounty(e.target.value)}
             name="county"
             autoComplete="off"
@@ -76,7 +81,7 @@ function AccountDetails({
         <div className={styles.formelement}>
           <label htmlFor="postcode">Postcode</label>
           <input
-            value={postcode}
+            value={currentDataSet[currentRecord].postcode}
             onChange={(e) => handleSetPostcode(e.target.value)}
             name="postcode"
             autoComplete="off"
@@ -85,7 +90,7 @@ function AccountDetails({
         <div className={styles.formelement}>
           <label htmlFor="telephone">Telephone</label>
           <input
-            value={telephone}
+            value={currentDataSet[currentRecord].telephone}
             onChange={(e) => handleSetTelephone(e.target.value)}
             name="telephone"
             autoComplete="off"

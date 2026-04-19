@@ -40,55 +40,160 @@ function SelectedDataSetPage({ userData }: UserData) {
   }
 
   function handleSetCompanyName(companyName: string) {
+    const updatedRecord = selectedDataSet.map((record) => {
+      if (record.id !== id) {
+        return record;
+      } else {
+        return {
+          ...record,
+          companyName: companyName,
+        };
+      }
+    });
+    console.log("Hello");
     setCompanyName(companyName);
   }
 
-  function handleSetAddress(address: string) {
-    setAddress(address);
+  function handleSetAddress(floop: string) {
+    const updatedRecord = selectedDataSet.map((record) => {
+      if (record.id !== id) {
+        return record;
+      } else {
+        return {
+          ...record,
+          address: floop,
+        };
+      }
+    });
+
+    setSelectedDataSet(updatedRecord);
   }
 
   function handleSetTown(town: string) {
-    setTown(town);
+    const updatedRecord = selectedDataSet.map((record) => {
+      if (record.id !== id) {
+        return record;
+      } else {
+        return {
+          ...record,
+          town: town,
+        };
+      }
+    });
+
+    setSelectedDataSet(updatedRecord);
   }
 
   function handleSetCounty(county: string) {
-    setCounty(county);
+    const updatedRecord = selectedDataSet.map((record) => {
+      if (record.id !== id) {
+        return record;
+      } else {
+        return {
+          ...record,
+          county: county,
+        };
+      }
+    });
+
+    setSelectedDataSet(updatedRecord);
   }
 
   function handleSetPostcode(postcode: string) {
-    setPostcode(postcode);
+    const updatedRecord = selectedDataSet.map((record) => {
+      if (record.id !== id) {
+        return record;
+      } else {
+        return {
+          ...record,
+          postcode: postcode,
+        };
+      }
+    });
+
+    setSelectedDataSet(updatedRecord);
   }
 
   function handleSetTelephone(telephone: string) {
-    setTelephone(telephone);
+    const updatedRecord = selectedDataSet.map((record) => {
+      if (record.id !== id) {
+        return record;
+      } else {
+        return {
+          ...record,
+          telephone: telephone,
+        };
+      }
+    });
+
+    setSelectedDataSet(updatedRecord);
   }
 
-  function currentCompanyCallLogs(): void {
-    console.log(selectedDataSet[0].callLogs);
+  function handleSetCurrentRecord(record: number) {
+    setCurrentRecord((curr) => curr + record);
   }
 
+  function handleOnlySaveAccount(): void {
+    const updatedRecord = selectedDataSet.map((record) => {
+      if (record.id !== id) {
+        return record;
+      } else {
+        debugger;
+        return {
+          ...record,
+          companyName: companyName,
+          address: address,
+          town: town,
+          county: county,
+          postcode: postcode,
+          telephone: telephone,
+          employees: employees,
+        };
+      }
+    });
+
+    setSelectedDataSet(updatedRecord);
+
+    // console.log(updatedRecord);
+    // console.log(selectedDataSet[currentRecord]);
+  }
+
+  const [currentRecord, setCurrentRecord] = useState<number>(0);
   const param = useParams();
-  const selectedDataSet = formatParam(param.selectedData);
+  const pickedDataSet = formatParam(param.selectedData);
+
+  const [selectedDataSet, setSelectedDataSet] = useState(pickedDataSet);
+  const id = selectedDataSet[currentRecord].id;
   const [companyName, setCompanyName] = useState<string>(
-    selectedDataSet[0].companyName,
+    pickedDataSet[currentRecord].companyName,
   );
-  const [address, setAddress] = useState<string>(selectedDataSet[0].address);
-  const [town, setTown] = useState<string>(selectedDataSet[0].town);
-  const [county, setCounty] = useState<string>(selectedDataSet[0].county);
-  const [postcode, setPostcode] = useState<string>(selectedDataSet[0].postcode);
+  const [address, setAddress] = useState<string>(
+    pickedDataSet[currentRecord].address,
+  );
+  const [town, setTown] = useState<string>(pickedDataSet[currentRecord].town);
+  const [county, setCounty] = useState<string>(
+    pickedDataSet[currentRecord].county,
+  );
+  const [postcode, setPostcode] = useState<string>(
+    pickedDataSet[currentRecord].postcode,
+  );
   const [telephone, setTelephone] = useState<string>(
-    selectedDataSet[0].telephone,
+    pickedDataSet[currentRecord].telephone,
   );
+  const [employees, setEmployees] = useState();
+  //const [callLogs, setCallLogs] = useState(selectedDataSet[0].callLogs);
 
   return (
     <div className="selecteddatasetpagemain-div">
       <AccountDetails
+        currentDataSet={selectedDataSet}
+        currentRecord={currentRecord}
         companyName={companyName}
-        address={address}
-        town={town}
-        county={county}
-        postcode={postcode}
-        telephone={telephone}
+        // address={address}
+        // town={town}
+        // county={county}
+        // postcode={postcode}
+        // telephone={telephone}
         handleSetCompanyName={handleSetCompanyName}
         handleSetAddress={handleSetAddress}
         handleSetTown={handleSetTown}
@@ -97,8 +202,22 @@ function SelectedDataSetPage({ userData }: UserData) {
         handleSetTelephone={handleSetTelephone}
       />
       <WrapUp
-        currentCompany={selectedDataSet}
-        currentCompanyCallLogs={currentCompanyCallLogs}
+        currentDataSet={selectedDataSet}
+        handleOnlySaveAccount={handleOnlySaveAccount}
+        companyName={companyName}
+        address={address}
+        town={town}
+        county={county}
+        postcode={postcode}
+        telephone={telephone}
+        currentRecord={currentRecord}
+        handleSetCompanyName={handleSetCompanyName}
+        handleSetAddress={handleSetAddress}
+        handleSetTown={handleSetTown}
+        handleSetCounty={handleSetCounty}
+        handleSetPostcode={handleSetPostcode}
+        handleSetTelephone={handleSetTelephone}
+        handleSetCurrentRecord={handleSetCurrentRecord}
       />
     </div>
   );

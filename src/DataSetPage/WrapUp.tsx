@@ -6,11 +6,42 @@ import { isBefore } from "date-fns";
 import { type CompanyDataSet, type CallLog } from "../DataSetData";
 
 type currentCompany = {
-  currentCompany: CompanyDataSet[];
-  currentCompanyCallLogs: () => void;
+  currentDataSet: CompanyDataSet[];
+  handleOnlySaveAccount: () => void;
+  // companyName: string;
+  // address: string;
+  // town: string;
+  // county: string;
+  // postcode: string;
+  // telephone: string;
+  currentRecord: number;
+  handleSetCompanyName: (value: string) => void;
+  handleSetAddress: (value: string) => void;
+  handleSetTown: (value: string) => void;
+  handleSetCounty: (value: string) => void;
+  handleSetPostcode: (value: string) => void;
+  handleSetTelephone: (value: string) => void;
+  handleSetCurrentRecord: (record: number) => void;
 };
 
-function WrapUp({ currentCompany, currentCompanyCallLogs }: currentCompany) {
+function WrapUp({
+  currentDataSet,
+  currentRecord,
+  handleOnlySaveAccount,
+  handleSetCurrentRecord,
+  // companyName,
+  // address,
+  // town,
+  // county,
+  // postcode,
+  // telephone,
+  // handleSetCompanyName,
+  // handleSetAddress,
+  // handleSetTown,
+  // handleSetCounty,
+  // handleSetPostcode,
+  // handleSetTelephone,
+}: currentCompany) {
   // Presentation state and data
   const [datePickerVisible, setDatePickerVisible] = useState(false);
   const [notes, setNotes] = useState<string>("");
@@ -79,7 +110,7 @@ function WrapUp({ currentCompany, currentCompanyCallLogs }: currentCompany) {
       };
     }
 
-    currentCompany[0].callLogs.push(currentCallLog);
+    currentDataSet[currentRecord].callLogs.push(currentCallLog);
     setNotes("");
   }
 
@@ -202,6 +233,9 @@ function WrapUp({ currentCompany, currentCompanyCallLogs }: currentCompany) {
                   id={styles.btn_save}
                   onClick={(e) => {
                     handleSaveAndLog(e);
+                    handleSetCurrentRecord(1);
+                    // console.log(currentDataSet);
+                    // console.log(currentDataSet[0].callLogs);
                   }}
                   disabled={response === "" ? true : false}
                 >
@@ -211,7 +245,7 @@ function WrapUp({ currentCompany, currentCompanyCallLogs }: currentCompany) {
                   id={styles.btn_saveacc}
                   onClick={(e) => {
                     e.preventDefault();
-                    currentCompanyCallLogs();
+                    handleOnlySaveAccount();
                   }}
                   disabled={response === "" ? true : false}
                 >
