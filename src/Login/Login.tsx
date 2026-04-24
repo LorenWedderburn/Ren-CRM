@@ -13,8 +13,8 @@ type Login = {
 };
 
 export default function Login({ handleLogin, handleUserData }: Login) {
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [username, setUsername] = useState<string>("LWed");
+  const [password, setPassword] = useState<string>("Crumble");
 
   let searchUserName: LoginDetails[];
 

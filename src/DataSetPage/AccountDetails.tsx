@@ -6,7 +6,7 @@ import { type CompanyDataSet } from "../DataSetData";
 type AccountDetailsDataset = {
   currentDataSet: CompanyDataSet[];
   currentRecord: number;
-  // companyName: string;
+  //companyName: string;
   // address: string;
   // town: string;
   // county: string;
@@ -23,7 +23,7 @@ type AccountDetailsDataset = {
 function AccountDetails({
   currentDataSet,
   currentRecord,
-  // companyName,
+  //companyName,
   // address,
   // town,
   // county,

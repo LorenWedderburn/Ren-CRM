@@ -8,7 +8,7 @@ import { type CompanyDataSet, type CallLog } from "../DataSetData";
 type currentCompany = {
   currentDataSet: CompanyDataSet[];
   handleOnlySaveAccount: () => void;
-  // companyName: string;
+  companyName: string;
   // address: string;
   // town: string;
   // county: string;
@@ -29,7 +29,7 @@ function WrapUp({
   currentRecord,
   handleOnlySaveAccount,
   handleSetCurrentRecord,
-  // companyName,
+  companyName,
   // address,
   // town,
   // county,
