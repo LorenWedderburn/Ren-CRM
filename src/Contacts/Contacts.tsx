@@ -1,12 +1,10 @@
 import "./Contacts.css";
-import { type Contact } from "../LoginData";
+import { useCRM } from "../CRMContext";
 
-type UserData = {
-  userData: Contact;
-};
+function Contacts() {
+  const { userData } = useCRM();
 
-function Contacts({ userData }: UserData) {
-  return <div className="contactsmain-div">{`${userData.firstName}`}</div>;
+  return <div className="contactsmain-div">{`${userData?.firstName}`}</div>;
 }
 
 export default Contacts;

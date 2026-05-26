@@ -5,51 +5,32 @@ import Header from "./Fixtures/Header";
 import LeftSidebar from "./Fixtures/LeftSidebar";
 import Contacts from "./Contacts/Contacts";
 import Login from "./Login/Login";
-import { type Contact } from "./LoginData";
-import { useState } from "react";
 import "./css/App.css";
 import SelectedDataSetPage from "./DataSetPage/SelectedDataSetPage";
+import { useCRM } from "./CRMContext";
 
 function App() {
-  const [login, setLogin] = useState(false);
-  const [userData, setUserData] = useState<Contact>();
-
-  function handleUserData(userData: Contact): void {
-    setUserData(userData);
-  }
-
-  function handleLogin(): void {
-    setLogin(!login);
-  }
+  const { login } = useCRM();
 
   return (
     <>
       <BrowserRouter>
         {login === false ? (
           <>
-            <Header login={login} />
+            <Header />
             <div id="app">
-              <Login
-                handleLogin={handleLogin}
-                handleUserData={handleUserData}
-              />
+              <Login />
             </div>
           </>
         ) : (
           <>
-            <Header login={login} userData={userData} />
+            <Header />
             <div id="app">
               <LeftSidebar />
               <Routes>
-                <Route path="/" element={<AppMain userData={userData!} />} />
-                <Route
-                  path="contacts"
-                  element={<Contacts userData={userData} />}
-                />
-                <Route
-                  path="/:selectedData"
-                  element={<SelectedDataSetPage userData={userData} />}
-                />
+                <Route path="/" element={<AppMain />} />
+                <Route path="contacts" element={<Contacts />} />
+                <Route path="/:selectedData" element={<SelectedDataSetPage />} />
               </Routes>
             </div>
           </>

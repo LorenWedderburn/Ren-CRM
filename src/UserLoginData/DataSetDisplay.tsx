@@ -1,19 +1,17 @@
 import "./DataSetDisplay.css";
-import { type Contact } from "../LoginData";
 import DataSetPanelElement from "./DataSetPanelElement";
+import { useCRM } from "../CRMContext";
 
-type DataSetDisplayProps = {
-  userData: Contact;
-};
+function DataSetDisplay() {
+  const { userData } = useCRM();
 
-function DataSetDispay({ userData }: DataSetDisplayProps) {
   return (
     <div className="datasetdisplay-div">
-      {userData.dataSet.map((element) => (
-        <DataSetPanelElement element={element} key={crypto.randomUUID()} />
+      {userData?.dataSet?.map((element: string) => (
+        <DataSetPanelElement element={element} key={element} />
       ))}
     </div>
   );
 }
 
-export default DataSetDispay;
+export default DataSetDisplay;

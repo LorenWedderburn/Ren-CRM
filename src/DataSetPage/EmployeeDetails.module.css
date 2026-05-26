@@ -1,22 +1,13 @@
-.formelement {
-  margin-left: 20px;
-}
-
-.formelement input {
-  width: 80%;
-}
-
 .contentdiv {
   background-color: #4f576c;
   border-radius: 10px;
   border: solid black;
   align-items: center;
   height: 45vh;
-  width: 35vw;
-
+  width: 78vw;
   margin-left: auto;
   margin-right: auto;
-  grid-area: account;
+  grid-area: contacts;
 }
 
 .contentdiv_header {
@@ -25,13 +16,33 @@
   font-weight: bolder;
   font-size: large;
   color: black;
-  margin-bottom: 5vh;
+  margin-bottom: 0.5vh;
 }
 
-.navigation_btns {
+.formelement {
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+.formelement input {
+  width: 40vw;
+}
+
+.wrapper {
+  margin-bottom: 10px;
+}
+
+.employeedetails_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5vh;
+}
+
+.employeedetails_wrapper_button {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 5vh;
   gap: 10vw;
 }

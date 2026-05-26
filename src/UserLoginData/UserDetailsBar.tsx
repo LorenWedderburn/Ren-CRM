@@ -1,14 +1,12 @@
 import "./UserDetailsBar.css";
-import { type Contact } from "../LoginData";
+import { useCRM } from "../CRMContext";
 
-type UserData = {
-  userData: Contact;
-};
+function UserDetailsBar() {
+  const { userData } = useCRM();
 
-function UserDetailsBar({ userData }: UserData) {
   return (
     <div className="userdetailsbar-div">
-      <div className="userdetailsbar-infodiv">{`${userData.firstName} ${userData.secondName}: ${userData.jobTitle}`}</div>
+      <div className="userdetailsbar-infodiv">{`${userData?.firstName} ${userData?.secondName}: ${userData?.jobTitle}`}</div>
     </div>
   );
 }

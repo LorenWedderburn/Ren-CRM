@@ -1,129 +1,60 @@
 import "./SelectedDataSetPage.module.css";
 import AccountDetails from "./AccountDetails";
-import { type Contact } from "../LoginData";
 import { useParams } from "react-router";
-import { type CompanyDataSet } from "../DataSetData";
-import {
-  mepContractors,
-  architects,
-  houseBuilders,
-  landscapers,
-} from "../DataSetData";
+import { type CompanyDataSet, type DataSetState } from "../DataSetData";
 import { useState } from "react";
 import WrapUp from "./WrapUp";
+import EmployeesDetails from "./EmployeesDetails";
+import { useCRM } from "../CRMContext";
 
-type SelectedDataSetPageProps = {};
+function SelectedDataSetPage() {
+  const { dataSetState, updateDataSet } = useCRM();
 
-function SelectedDataSetPage(props: SelectedDataSetPageProps) {
-  function formatParam(dataset: string | undefined): CompanyDataSet[] {
-    let dataSetType: CompanyDataSet[];
+  function getDataTypeKey(dataset: string | undefined): keyof DataSetState {
     switch (dataset) {
       case "house builders":
-        dataSetType = [...houseBuilders];
-        break;
+        return "houseBuilders";
       case "landscapers":
-        dataSetType = [...landscapers];
-        break;
+        return "landscapers";
       case "architects":
-        dataSetType = [...architects];
-        break;
+        return "architects";
       case "MEP":
-        dataSetType = [...mepContractors];
-        break;
+        return "mepContractors";
       default:
-        dataSetType = [...mepContractors];
+        return "mepContractors";
     }
-
-    return dataSetType;
   }
 
-  function handleSetCompanyName(changedCompanyName: string) {
-    const updatedRecord = selectedDataSet.map((record) => {
-      if (record.id !== id) {
-        return record;
-      } else {
-        return {
-          ...record,
-          companyName: changedCompanyName,
-        };
-      }
-    });
-    setCompanyName(updatedRecord[currentRecord].companyName);
-    setSelectedDataSet(updatedRecord);
-    //handleSelectedDataSet(updatedRecord);
+  function formatParam(dataset: string | undefined): CompanyDataSet[] {
+    const key = getDataTypeKey(dataset);
+    return [...dataSetState[key]];
   }
 
-  function handleSetAddress(changedAddress: string) {
-    const updatedRecord = selectedDataSet.map((record) => {
-      if (record.id !== id) {
-        return record;
-      } else {
-        return {
-          ...record,
-          address: changedAddress,
-        };
-      }
-    });
-    setAddress(updatedRecord[currentRecord].address);
-    setSelectedDataSet(updatedRecord);
-    //handleSelectedDataSet(updatedRecord);
-  }
-
-  function handleSetTown(town: string) {
-    setSelectedDataSet(updatedRecord);
-  }
-
-  function handleSetCounty(county: string) {
-    setSelectedDataSet(updatedRecord);
-  }
-
-  function handleSetPostcode(postcode: string) {
-    setSelectedDataSet(updatedRecord);
-  }
-
-  function handleSetTelephone(telephone: string) {
-    setSelectedDataSet(updatedRecord);
+  function handleUpdateRecord(field: keyof CompanyDataSet, value: string) {
+    setSelectedDataSet((prev) =>
+      prev.map((record) =>
+        record.id !== id ? record : { ...record, [field]: value },
+      ),
+    );
   }
 
   function handleSetCurrentRecord(record: number) {
-    setCurrentRecord((curr) => curr + record);
+    setCurrentRecord((curr) =>
+      Math.max(Math.min(curr + record, selectedDataSet.length - 1), 0),
+    );
   }
 
-  function handleOnlySaveAccount(): void {
-    if (selectedDataSet === undefined) return;
-    debugger;
-    const updatedRecord = selectedDataSet.map((record) => {
-      if (record.id !== id) {
-        return record;
-      } else {
-        return {
-          ...record,
-          companyName: companyName,
-          address: address,
-          town: town,
-          county: county,
-          postcode: postcode,
-          telephone: telephone,
-          employees: employees,
-        };
-      }
-    });
-
-    // handleSelectedDataSet(updatedRecord);
-    setSelectedDataSet(updatedRecord);
-    setCurrentRecord((c) => c + 1);
-    updateState();
-    console.log(currentRecord);
-  }
-
-  function updateState(): void {
-    setCompanyName(selectedDataSet[currentRecord + 1].companyName);
-    setAddress(selectedDataSet[currentRecord + 1].address);
-    setTown(selectedDataSet[currentRecord + 1].town);
-    setCounty(selectedDataSet[currentRecord + 1].county);
-    setPostcode(selectedDataSet[currentRecord + 1].postcode);
-    setTelephone(selectedDataSet[currentRecord + 1].telephone);
-    console.log(companyName);
+  function handleDeleteEmployee(employeeIndex: number) {
+    setSelectedDataSet((prev) =>
+      prev.map((record) =>
+        record.id !== id
+          ? record
+          : {
+              ...record,
+              employees: record.employees.filter((_, i) => i !== employeeIndex),
+            },
+      ),
+    );
   }
 
   const [currentRecord, setCurrentRecord] = useState<number>(0);
@@ -131,61 +62,27 @@ function SelectedDataSetPage(props: SelectedDataSetPageProps) {
   const pickedDataSet = formatParam(param.selectedData);
 
   const [selectedDataSet, setSelectedDataSet] = useState(pickedDataSet);
-  //handleSelectedDataSet(pickedDataSet);
   const id = selectedDataSet[currentRecord].id;
-  const [companyName, setCompanyName] = useState<string>(
-    selectedDataSet[currentRecord].companyName,
-  );
-  const [address, setAddress] = useState<string>(
-    selectedDataSet[currentRecord].address,
-  );
-  const [town, setTown] = useState<string>(selectedDataSet[currentRecord].town);
-  const [county, setCounty] = useState<string>(
-    selectedDataSet[currentRecord].county,
-  );
-  const [postcode, setPostcode] = useState<string>(
-    selectedDataSet[currentRecord].postcode,
-  );
-  const [telephone, setTelephone] = useState<string>(
-    selectedDataSet[currentRecord].telephone,
-  );
-  const [employees, setEmployees] = useState();
-  //const [callLogs, setCallLogs] = useState(selectedDataSet[0].callLogs);
 
   return (
     <div className="selecteddatasetpagemain-div">
-      <AccountDetails
-        currentDataSet={selectedDataSet}
+      <EmployeesDetails
+        key={currentRecord}
+        selectedDataSet={selectedDataSet}
         currentRecord={currentRecord}
-        companyName={companyName}
-        // address={address}
-        // town={town}
-        // county={county}
-        // postcode={postcode}
-        // telephone={telephone}
-        handleSetCompanyName={handleSetCompanyName}
-        handleSetAddress={handleSetAddress}
-        handleSetTown={handleSetTown}
-        handleSetCounty={handleSetCounty}
-        handleSetPostcode={handleSetPostcode}
-        handleSetTelephone={handleSetTelephone}
+        handleDeleteEmployee={handleDeleteEmployee}
+      />
+      <AccountDetails
+        selectedDataSet={selectedDataSet}
+        currentRecord={currentRecord}
+        handleUpdateRecord={handleUpdateRecord}
+        handleSetCurrentRecord={handleSetCurrentRecord}
       />
       <WrapUp
-        currentDataSet={selectedDataSet}
-        handleOnlySaveAccount={handleOnlySaveAccount}
-        companyName={companyName}
-        address={address}
-        town={town}
-        county={county}
-        postcode={postcode}
-        telephone={telephone}
+        selectedDataSet={selectedDataSet}
+        updateDataSetTypeUsingDataTypeAndId={updateDataSet}
+        dataTypeKey={getDataTypeKey(param.selectedData)}
         currentRecord={currentRecord}
-        handleSetCompanyName={handleSetCompanyName}
-        handleSetAddress={handleSetAddress}
-        handleSetTown={handleSetTown}
-        handleSetCounty={handleSetCounty}
-        handleSetPostcode={handleSetPostcode}
-        handleSetTelephone={handleSetTelephone}
         handleSetCurrentRecord={handleSetCurrentRecord}
       />
     </div>

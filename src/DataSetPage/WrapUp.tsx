@@ -4,44 +4,27 @@ import "./SelectedDataSetPage.module.css";
 import styles from "./WrapUp.module.css";
 import { isBefore } from "date-fns";
 import { type CompanyDataSet, type CallLog } from "../DataSetData";
+import calendarIcon from "../images/calendar-icon.png";
 
-type currentCompany = {
-  currentDataSet: CompanyDataSet[];
-  handleOnlySaveAccount: () => void;
-  companyName: string;
-  // address: string;
-  // town: string;
-  // county: string;
-  // postcode: string;
-  // telephone: string;
+type wrapUpProps = {
+  selectedDataSet: CompanyDataSet[];
+  dataTypeKey: string;
+  updateDataSetTypeUsingDataTypeAndId: (
+    dataType: string,
+    id: number,
+    updatedRecord: CompanyDataSet[],
+  ) => void;
   currentRecord: number;
-  handleSetCompanyName: (value: string) => void;
-  handleSetAddress: (value: string) => void;
-  handleSetTown: (value: string) => void;
-  handleSetCounty: (value: string) => void;
-  handleSetPostcode: (value: string) => void;
-  handleSetTelephone: (value: string) => void;
   handleSetCurrentRecord: (record: number) => void;
 };
 
 function WrapUp({
-  currentDataSet,
+  selectedDataSet,
   currentRecord,
-  handleOnlySaveAccount,
   handleSetCurrentRecord,
-  companyName,
-  // address,
-  // town,
-  // county,
-  // postcode,
-  // telephone,
-  // handleSetCompanyName,
-  // handleSetAddress,
-  // handleSetTown,
-  // handleSetCounty,
-  // handleSetPostcode,
-  // handleSetTelephone,
-}: currentCompany) {
+  updateDataSetTypeUsingDataTypeAndId,
+  dataTypeKey,
+}: wrapUpProps) {
   // Presentation state and data
   const [datePickerVisible, setDatePickerVisible] = useState(false);
   const [notes, setNotes] = useState<string>("");
@@ -54,7 +37,7 @@ function WrapUp({
   const [selected, setSelected] = useState<Date>(); // The date that the user picks on the date picker
 
   function closeDatePicker(): void {
-    setDatePickerVisible((curr) => (curr = !curr));
+    setDatePickerVisible((curr) => !curr);
   }
 
   function handleSaveAndLog(
@@ -84,33 +67,37 @@ function WrapUp({
           createCallLog();
           break;
         }
-      default:
-        console.log("The rest havent been done yet");
-        break;
     }
   }
 
   function createCallLog(): void {
-    let currentCallLog: CallLog;
+    const currentCallLog: CallLog =
+      pickedDate === ""
+        ? {
+            contact: "default",
+            currentCallDate: currentDate,
+            responseType: response,
+            notes: notes,
+          }
+        : {
+            contact: "default",
+            currentCallDate: currentDate,
+            appointmentCallDate: pickedDate,
+            responseType: response,
+            notes: notes,
+          };
 
-    if (pickedDate === "") {
-      currentCallLog = {
-        contact: "default",
-        currentCallDate: currentDate,
-        responseType: response,
-        notes: notes,
-      };
-    } else {
-      currentCallLog = {
-        contact: "default",
-        currentCallDate: currentDate,
-        appointmentCallDate: pickedDate,
-        responseType: response,
-        notes: notes,
-      };
-    }
+    const updatedDataSet = selectedDataSet.map((record, index) =>
+      index !== currentRecord
+        ? record
+        : { ...record, callLogs: [...record.callLogs, currentCallLog] },
+    );
 
-    currentDataSet[currentRecord].callLogs.push(currentCallLog);
+    updateDataSetTypeUsingDataTypeAndId(
+      dataTypeKey,
+      currentRecord,
+      updatedDataSet,
+    );
     setNotes("");
   }
 
@@ -186,9 +173,9 @@ function WrapUp({
               <div className={styles.wrapper}>
                 <img
                   id={styles.calendarimage}
-                  src="\src\images\calendar-icon.png"
+                  src={calendarIcon}
                   onClick={() => {
-                    setDatePickerVisible((curr) => (curr = !curr));
+                    setDatePickerVisible((curr) => !curr);
                   }}
                 />
               </div>
@@ -234,8 +221,6 @@ function WrapUp({
                   onClick={(e) => {
                     handleSaveAndLog(e);
                     handleSetCurrentRecord(1);
-                    // console.log(currentDataSet);
-                    // console.log(currentDataSet[0].callLogs);
                   }}
                   disabled={response === "" ? true : false}
                 >
@@ -245,7 +230,13 @@ function WrapUp({
                   id={styles.btn_saveacc}
                   onClick={(e) => {
                     e.preventDefault();
-                    handleOnlySaveAccount();
+                    console.log(selectedDataSet);
+                    updateDataSetTypeUsingDataTypeAndId(
+                      dataTypeKey,
+                      currentRecord,
+                      selectedDataSet,
+                    );
+                    handleSetCurrentRecord(1);
                   }}
                   disabled={response === "" ? true : false}
                 >

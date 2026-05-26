@@ -1,40 +1,19 @@
 import "./SelectedDataSetPage.module.css";
 import styles from "./AccountDetails.module.css";
 import { type CompanyDataSet } from "../DataSetData";
-//import styles from "./WrapUp.module.css";
 
 type AccountDetailsDataset = {
-  currentDataSet: CompanyDataSet[];
+  selectedDataSet: CompanyDataSet[];
   currentRecord: number;
-  //companyName: string;
-  // address: string;
-  // town: string;
-  // county: string;
-  // postcode: string;
-  // telephone: string;
-  handleSetCompanyName: (value: string) => void;
-  handleSetAddress: (value: string) => void;
-  handleSetTown: (value: string) => void;
-  handleSetCounty: (value: string) => void;
-  handleSetPostcode: (value: string) => void;
-  handleSetTelephone: (value: string) => void;
+  handleUpdateRecord: (field: keyof CompanyDataSet, value: string) => void;
+  handleSetCurrentRecord: (record: number) => void;
 };
 
 function AccountDetails({
-  currentDataSet,
+  selectedDataSet,
   currentRecord,
-  //companyName,
-  // address,
-  // town,
-  // county,
-  // postcode,
-  // telephone,
-  handleSetCompanyName,
-  handleSetAddress,
-  handleSetTown,
-  handleSetCounty,
-  handleSetPostcode,
-  handleSetTelephone,
+  handleUpdateRecord,
+  handleSetCurrentRecord,
 }: AccountDetailsDataset) {
   return (
     <div className={styles.contentdiv}>
@@ -45,8 +24,8 @@ function AccountDetails({
         <div className={styles.formelement}>
           <label htmlFor="companyName">Company Name</label>
           <input
-            value={currentDataSet[currentRecord].companyName}
-            onChange={(e) => handleSetCompanyName(e.target.value)}
+            value={selectedDataSet[currentRecord].companyName}
+            onChange={(e) => handleUpdateRecord("companyName", e.target.value)}
             name="companyName"
             autoComplete="off"
           ></input>
@@ -54,8 +33,8 @@ function AccountDetails({
         <div className={styles.formelement}>
           <label htmlFor="address">Address</label>
           <input
-            value={currentDataSet[currentRecord].address}
-            onChange={(e) => handleSetAddress(e.target.value)}
+            value={selectedDataSet[currentRecord].address}
+            onChange={(e) => handleUpdateRecord("address", e.target.value)}
             name="address"
             autoComplete="off"
           ></input>
@@ -63,8 +42,8 @@ function AccountDetails({
         <div className={styles.formelement}>
           <label htmlFor="town">Town</label>
           <input
-            value={currentDataSet[currentRecord].town}
-            onChange={(e) => handleSetTown(e.target.value)}
+            value={selectedDataSet[currentRecord].town}
+            onChange={(e) => handleUpdateRecord("town", e.target.value)}
             name="town"
             autoComplete="off"
           ></input>
@@ -72,8 +51,8 @@ function AccountDetails({
         <div className={styles.formelement}>
           <label htmlFor="county">County</label>
           <input
-            value={currentDataSet[currentRecord].county}
-            onChange={(e) => handleSetCounty(e.target.value)}
+            value={selectedDataSet[currentRecord].county}
+            onChange={(e) => handleUpdateRecord("county", e.target.value)}
             name="county"
             autoComplete="off"
           ></input>
@@ -81,8 +60,8 @@ function AccountDetails({
         <div className={styles.formelement}>
           <label htmlFor="postcode">Postcode</label>
           <input
-            value={currentDataSet[currentRecord].postcode}
-            onChange={(e) => handleSetPostcode(e.target.value)}
+            value={selectedDataSet[currentRecord].postcode}
+            onChange={(e) => handleUpdateRecord("postcode", e.target.value)}
             name="postcode"
             autoComplete="off"
           ></input>
@@ -90,11 +69,19 @@ function AccountDetails({
         <div className={styles.formelement}>
           <label htmlFor="telephone">Telephone</label>
           <input
-            value={currentDataSet[currentRecord].telephone}
-            onChange={(e) => handleSetTelephone(e.target.value)}
+            value={selectedDataSet[currentRecord].telephone}
+            onChange={(e) => handleUpdateRecord("telephone", e.target.value)}
             name="telephone"
             autoComplete="off"
           ></input>
+        </div>
+        <div className={styles.navigation_btns}>
+          <button type="button" onClick={() => handleSetCurrentRecord(-1)}>
+            {"< Back"}
+          </button>
+          <button type="button" onClick={() => handleSetCurrentRecord(1)}>
+            {"Forward >"}
+          </button>
         </div>
       </form>
     </div>

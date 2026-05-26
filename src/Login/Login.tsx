@@ -1,60 +1,38 @@
 import React, { useState } from "react";
-import {
-  loginBank,
-  contactBank,
-  type LoginDetails,
-  type Contact,
-} from "../LoginData";
+import { loginBank, contactBank } from "../LoginData";
 import "./Login.css";
+import { useCRM } from "../CRMContext";
 
-type Login = {
-  handleLogin: () => void;
-  handleUserData: (userData: Contact) => void;
-};
-
-export default function Login({ handleLogin, handleUserData }: Login) {
+export default function Login() {
+  const { setUserData, handleLogin } = useCRM();
   const [username, setUsername] = useState<string>("LWed");
   const [password, setPassword] = useState<string>("Crumble");
-
-  let searchUserName: LoginDetails[];
+  const [error, setError] = useState<string>("");
 
   function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>): void {
     e.preventDefault();
+    setError("");
 
-    findUsername();
-  }
-
-  function getUserData(): void {
-    const userData: Contact[] = contactBank.filter(
-      (current) => current.id === searchUserName[0].id,
-    );
-    handleUserData(userData[0]);
-  }
-
-  function findUsername(): void {
-    const currentPassword = password; // capture before any state updates
-    const currentUsername = username;
-
-    searchUserName = loginBank.filter(
-      (currentUser) => currentUser.username === currentUsername,
+    const matchedUser = loginBank.find(
+      (currentUser) => currentUser.username === username,
     );
 
-    if (searchUserName.length === 0) {
-      alert("Username not found.");
+    if (!matchedUser) {
+      setError("Username not found.");
       return;
     }
 
-    console.log(searchUserName);
-
-    if (currentPassword === searchUserName[0].password) {
-      getUserData();
-      handleLogin();
-      setUsername("");
+    if (password !== matchedUser.password) {
+      setError("Incorrect Login Details!");
       setPassword("");
-    } else {
-      alert("Incorrect Login Details!");
-      setPassword("");
+      return;
     }
+
+    const userData = contactBank.find((c) => c.id === matchedUser.id);
+    setUserData(userData!);
+    handleLogin();
+    setUsername("");
+    setPassword("");
   }
 
   return (
@@ -88,6 +66,7 @@ export default function Login({ handleLogin, handleUserData }: Login) {
         <div className="submit-div">
           <button>Sign in</button>
         </div>
+        {error && <p className="login-error">{error}</p>}
       </form>
     </div>
   );

@@ -20,6 +20,13 @@ export type CallLog = {
   notes: string;
 };
 
+export type DataSetState = {
+  houseBuilders: CompanyDataSet[];
+  landscapers: CompanyDataSet[];
+  architects: CompanyDataSet[];
+  mepContractors: CompanyDataSet[];
+};
+
 export const houseBuilders: CompanyDataSet[] = [
   {
     id: 1,
