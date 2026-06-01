@@ -1,4 +1,94 @@
 .contactsmain-div {
   background-color: #c2c4c3;
-  width: 100vw;
+  width: 100%;
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.contacts-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.contacts-search {
+  width: 100%;
+  max-width: 400px;
+  padding: 8px 12px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.contacts-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 4px 14px;
+  border: 1px solid #888;
+  border-radius: 4px;
+  background-color: #4f576c;
+  color: #c2c4c3;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.filter-btn.active {
+  background-color: #3a3f4d;
+  color: white;
+  font-weight: bold;
+  border-color: #2a2f3d;
+}
+
+.contacts-count {
+  font-size: 13px;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+.contacts-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 6px;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+.contacts-table thead {
+  background-color: #4f576c;
+  color: white;
+}
+
+.contacts-table th {
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.contacts-table td {
+  padding: 8px 14px;
+  border-bottom: 1px solid #ddd;
+  color: #222;
+}
+
+.contacts-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.contacts-table tbody tr:hover {
+  background-color: #f0f2f5;
+}
+
+.contacts-empty {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-size: 16px;
 }

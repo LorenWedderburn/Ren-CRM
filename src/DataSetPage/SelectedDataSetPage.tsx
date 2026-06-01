@@ -2,6 +2,7 @@ import "./SelectedDataSetPage.module.css";
 import AccountDetails from "./AccountDetails";
 import { useParams } from "react-router";
 import { type CompanyDataSet, type DataSetState } from "../DataSetData";
+import { type Contact } from "../LoginData";
 import { useState } from "react";
 import WrapUp from "./WrapUp";
 import EmployeesDetails from "./EmployeesDetails";
@@ -31,11 +32,11 @@ function SelectedDataSetPage() {
   }
 
   function handleUpdateRecord(field: keyof CompanyDataSet, value: string) {
-    setSelectedDataSet((prev) =>
-      prev.map((record) =>
-        record.id !== id ? record : { ...record, [field]: value },
-      ),
+    const updatedDataSet = selectedDataSet.map((record) =>
+      record.id !== id ? record : { ...record, [field]: value }
     );
+    setSelectedDataSet(updatedDataSet);
+    updateDataSet(getDataTypeKey(param.selectedData), currentRecord, updatedDataSet);
   }
 
   function handleSetCurrentRecord(record: number) {
@@ -44,20 +45,46 @@ function SelectedDataSetPage() {
     );
   }
 
-  function handleDeleteEmployee(employeeIndex: number) {
-    setSelectedDataSet((prev) =>
-      prev.map((record) =>
-        record.id !== id
-          ? record
-          : {
-              ...record,
-              employees: record.employees.filter((_, i) => i !== employeeIndex),
-            },
-      ),
+  function handleUpdateEmployee(employeeIndex: number, field: keyof Contact, value: string) {
+    const updatedDataSet = selectedDataSet.map((record) =>
+      record.id !== id
+        ? record
+        : {
+            ...record,
+            employees: record.employees.map((emp, i) =>
+              i !== employeeIndex ? emp : { ...emp, [field]: value }
+            ),
+          },
     );
+    setSelectedDataSet(updatedDataSet);
+    updateDataSet(getDataTypeKey(param.selectedData), currentRecord, updatedDataSet);
+  }
+
+  function handleAddEmployee(newEmployee: Contact) {
+    const updatedDataSet = selectedDataSet.map((record) =>
+      record.id !== id
+        ? record
+        : { ...record, employees: [...record.employees, newEmployee] },
+    );
+    setSelectedDataSet(updatedDataSet);
+    updateDataSet(getDataTypeKey(param.selectedData), currentRecord, updatedDataSet);
+  }
+
+  function handleDeleteEmployee(employeeIndex: number) {
+    const updatedDataSet = selectedDataSet.map((record) =>
+      record.id !== id
+        ? record
+        : {
+            ...record,
+            employees: record.employees.filter((_, i) => i !== employeeIndex),
+          },
+    );
+    setSelectedDataSet(updatedDataSet);
+    updateDataSet(getDataTypeKey(param.selectedData), currentRecord, updatedDataSet);
   }
 
   const [currentRecord, setCurrentRecord] = useState<number>(0);
+  const [currentEmployee, setCurrentEmployee] = useState<number>(0);
   const param = useParams();
   const pickedDataSet = formatParam(param.selectedData);
 
@@ -70,7 +97,11 @@ function SelectedDataSetPage() {
         key={currentRecord}
         selectedDataSet={selectedDataSet}
         currentRecord={currentRecord}
+        currentEmployee={currentEmployee}
+        setCurrentEmployee={setCurrentEmployee}
         handleDeleteEmployee={handleDeleteEmployee}
+        handleUpdateEmployee={handleUpdateEmployee}
+        handleAddEmployee={handleAddEmployee}
       />
       <AccountDetails
         selectedDataSet={selectedDataSet}
@@ -80,9 +111,11 @@ function SelectedDataSetPage() {
       />
       <WrapUp
         selectedDataSet={selectedDataSet}
+        setSelectedDataSet={setSelectedDataSet}
         updateDataSetTypeUsingDataTypeAndId={updateDataSet}
         dataTypeKey={getDataTypeKey(param.selectedData)}
         currentRecord={currentRecord}
+        currentEmployee={currentEmployee}
         handleSetCurrentRecord={handleSetCurrentRecord}
       />
     </div>

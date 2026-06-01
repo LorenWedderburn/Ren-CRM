@@ -11,7 +11,7 @@ function LeftSidebar() {
   return (
     <Sidebar
       rootStyles={{
-        height: "100vh",
+        height: "100%",
         backgroundColor: "#615f5a",
         color: "#000",
       }}

@@ -5,8 +5,8 @@ import { useCRM } from "../CRMContext";
 
 export default function Login() {
   const { setUserData, handleLogin } = useCRM();
-  const [username, setUsername] = useState<string>("LWed");
-  const [password, setPassword] = useState<string>("Crumble");
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
 
   function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>): void {

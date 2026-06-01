@@ -27,11 +27,13 @@ function App() {
             <Header />
             <div id="app">
               <LeftSidebar />
-              <Routes>
-                <Route path="/" element={<AppMain />} />
-                <Route path="contacts" element={<Contacts />} />
-                <Route path="/:selectedData" element={<SelectedDataSetPage />} />
-              </Routes>
+              <div style={{ flex: 1, display: "flex", flexDirection: "column", overflowY: "auto" }}>
+                <Routes>
+                  <Route path="/" element={<AppMain />} />
+                  <Route path="contacts" element={<Contacts />} />
+                  <Route path="/:selectedData" element={<SelectedDataSetPage />} />
+                </Routes>
+              </div>
             </div>
           </>
         )}

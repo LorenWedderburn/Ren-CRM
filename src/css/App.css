@@ -1,5 +1,6 @@
 #app {
   display: flex;
-
-  /* grid-template-columns: 0fr 2fr; */
+  align-items: stretch;
+  height: calc(100vh - 7vh);
+  overflow: hidden;
 }

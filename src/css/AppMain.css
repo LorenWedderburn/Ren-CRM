@@ -1,14 +1,14 @@
 .appmain-div {
   display: flex;
   background-color: #c2c4c3;
-  width: 100vw;
+  width: 100%;
+  flex: 1;
   justify-content: center;
 }
 
 .elements-div {
   display: block;
   width: 90%;
-  height: 80vh;
 }
 
 .userdetails-div {

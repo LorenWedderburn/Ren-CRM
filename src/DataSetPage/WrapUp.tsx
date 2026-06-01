@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type React from "react";
 import { DayPicker } from "react-day-picker";
 import "./SelectedDataSetPage.module.css";
 import styles from "./WrapUp.module.css";
@@ -8,6 +9,7 @@ import calendarIcon from "../images/calendar-icon.png";
 
 type wrapUpProps = {
   selectedDataSet: CompanyDataSet[];
+  setSelectedDataSet: React.Dispatch<React.SetStateAction<CompanyDataSet[]>>;
   dataTypeKey: string;
   updateDataSetTypeUsingDataTypeAndId: (
     dataType: string,
@@ -15,12 +17,15 @@ type wrapUpProps = {
     updatedRecord: CompanyDataSet[],
   ) => void;
   currentRecord: number;
+  currentEmployee: number;
   handleSetCurrentRecord: (record: number) => void;
 };
 
 function WrapUp({
   selectedDataSet,
+  setSelectedDataSet,
   currentRecord,
+  currentEmployee,
   handleSetCurrentRecord,
   updateDataSetTypeUsingDataTypeAndId,
   dataTypeKey,
@@ -71,16 +76,21 @@ function WrapUp({
   }
 
   function createCallLog(): void {
+    const emp = selectedDataSet[currentRecord].employees[currentEmployee];
+    const contactName = emp
+      ? `${emp.firstName} ${emp.secondName}`.trim()
+      : "Unknown";
+
     const currentCallLog: CallLog =
       pickedDate === ""
         ? {
-            contact: "default",
+            contact: contactName,
             currentCallDate: currentDate,
             responseType: response,
             notes: notes,
           }
         : {
-            contact: "default",
+            contact: contactName,
             currentCallDate: currentDate,
             appointmentCallDate: pickedDate,
             responseType: response,
@@ -93,6 +103,7 @@ function WrapUp({
         : { ...record, callLogs: [...record.callLogs, currentCallLog] },
     );
 
+    setSelectedDataSet(updatedDataSet);
     updateDataSetTypeUsingDataTypeAndId(
       dataTypeKey,
       currentRecord,
@@ -230,7 +241,6 @@ function WrapUp({
                   id={styles.btn_saveacc}
                   onClick={(e) => {
                     e.preventDefault();
-                    console.log(selectedDataSet);
                     updateDataSetTypeUsingDataTypeAndId(
                       dataTypeKey,
                       currentRecord,
