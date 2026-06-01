@@ -19,6 +19,7 @@ type wrapUpProps = {
   currentRecord: number;
   currentEmployee: number;
   handleSetCurrentRecord: (record: number) => void;
+  onCallLogged: () => void;
 };
 
 function WrapUp({
@@ -29,6 +30,7 @@ function WrapUp({
   handleSetCurrentRecord,
   updateDataSetTypeUsingDataTypeAndId,
   dataTypeKey,
+  onCallLogged,
 }: wrapUpProps) {
   // Presentation state and data
   const [datePickerVisible, setDatePickerVisible] = useState(false);
@@ -110,6 +112,7 @@ function WrapUp({
       updatedDataSet,
     );
     setNotes("");
+    onCallLogged();
   }
 
   function dateSubmit(
@@ -231,7 +234,6 @@ function WrapUp({
                   id={styles.btn_save}
                   onClick={(e) => {
                     handleSaveAndLog(e);
-                    handleSetCurrentRecord(1);
                   }}
                   disabled={response === "" ? true : false}
                 >

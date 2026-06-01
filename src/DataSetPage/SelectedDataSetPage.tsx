@@ -43,6 +43,7 @@ function SelectedDataSetPage() {
     setCurrentRecord((curr) =>
       Math.max(Math.min(curr + record, selectedDataSet.length - 1), 0),
     );
+    setEmployeeMode("view");
   }
 
   function handleUpdateEmployee(employeeIndex: number, field: keyof Contact, value: string) {
@@ -85,6 +86,7 @@ function SelectedDataSetPage() {
 
   const [currentRecord, setCurrentRecord] = useState<number>(0);
   const [currentEmployee, setCurrentEmployee] = useState<number>(0);
+  const [employeeMode, setEmployeeMode] = useState<"view" | "new" | "history">("view");
   const param = useParams();
   const pickedDataSet = formatParam(param.selectedData);
 
@@ -99,6 +101,8 @@ function SelectedDataSetPage() {
         currentRecord={currentRecord}
         currentEmployee={currentEmployee}
         setCurrentEmployee={setCurrentEmployee}
+        mode={employeeMode}
+        setMode={setEmployeeMode}
         handleDeleteEmployee={handleDeleteEmployee}
         handleUpdateEmployee={handleUpdateEmployee}
         handleAddEmployee={handleAddEmployee}
@@ -117,6 +121,7 @@ function SelectedDataSetPage() {
         currentRecord={currentRecord}
         currentEmployee={currentEmployee}
         handleSetCurrentRecord={handleSetCurrentRecord}
+        onCallLogged={() => setEmployeeMode("history")}
       />
     </div>
   );

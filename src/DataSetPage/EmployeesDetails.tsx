@@ -9,6 +9,8 @@ type employeesDetailsProps = {
   currentRecord: number;
   currentEmployee: number;
   setCurrentEmployee: React.Dispatch<React.SetStateAction<number>>;
+  mode: "view" | "new" | "history";
+  setMode: React.Dispatch<React.SetStateAction<"view" | "new" | "history">>;
   handleDeleteEmployee: (employeeIndex: number) => void;
   handleUpdateEmployee: (employeeIndex: number, field: keyof Contact, value: string) => void;
   handleAddEmployee: (newEmployee: Contact) => void;
@@ -64,11 +66,12 @@ function EmployeesDetails({
   currentRecord,
   currentEmployee,
   setCurrentEmployee,
+  mode,
+  setMode,
   handleDeleteEmployee,
   handleUpdateEmployee,
   handleAddEmployee,
 }: employeesDetailsProps) {
-  const [mode, setMode] = useState<"view" | "new" | "history">("view");
   const [newEmployee, setNewEmployee] = useState<Contact>(emptyEmployee);
   const [summary, setSummary] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
