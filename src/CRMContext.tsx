@@ -23,7 +23,7 @@ export function CRMProvider({ children }: { children: React.ReactNode }) {
     setLogin((prev) => !prev);
   }
 
-  function updateDataSet(dataType: string, id: number, updatedRecord: CompanyDataSet[]) {
+  function updateDataSet(dataType: string, _id: number, updatedRecord: CompanyDataSet[]) {
     setDataSetState((state) => ({ ...state, [dataType]: updatedRecord }));
   }
 

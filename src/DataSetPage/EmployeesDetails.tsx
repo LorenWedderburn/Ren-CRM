@@ -111,7 +111,7 @@ function EmployeesDetails({
 
   return (
     <>
-      {employees.length === 0 && mode === "view" ? (
+      {employees.length === 0 ? (
         <div className={styles.contentdiv}>
           <div className={styles.contentdiv_header}>Employee Details</div>
           <div className={styles.mode_buttons}>
@@ -125,7 +125,7 @@ function EmployeesDetails({
             <button
               type="button"
               className={mode === "new" ? styles.mode_btn_active : styles.mode_btn}
-              onClick={() => setMode("new")}
+              onClick={() => { setMode("new"); setNewEmployee(emptyEmployee); }}
             >
               New Employee
             </button>
@@ -137,9 +137,66 @@ function EmployeesDetails({
               Call History
             </button>
           </div>
-          <div className={styles.contentdiv_employees}>
-            <p className={styles.p_employees}>No employees</p>
-          </div>
+          {mode === "new" ? (
+            <>
+              <form>
+                <div className={styles.employeedetails_wrapper}>
+                  <div className={styles.wrapper}>
+                    <div className={styles.formelement}>
+                      <label htmlFor="new_firstName">First Name</label>
+                      <input id="new_firstName" value={newEmployee.firstName} onChange={(e) => setNewEmployee((prev) => ({ ...prev, firstName: e.target.value }))} />
+                    </div>
+                  </div>
+                  <div className={styles.wrapper}>
+                    <div className={styles.formelement}>
+                      <label htmlFor="new_secondName">Second Name</label>
+                      <input id="new_secondName" value={newEmployee.secondName} onChange={(e) => setNewEmployee((prev) => ({ ...prev, secondName: e.target.value }))} />
+                    </div>
+                  </div>
+                  <div className={styles.wrapper}>
+                    <div className={styles.formelement}>
+                      <label htmlFor="new_jobTitle">Job Title</label>
+                      <input id="new_jobTitle" value={newEmployee.jobTitle} onChange={(e) => setNewEmployee((prev) => ({ ...prev, jobTitle: e.target.value }))} />
+                    </div>
+                  </div>
+                  <div className={styles.wrapper}>
+                    <div className={styles.formelement}>
+                      <label htmlFor="new_email">Email</label>
+                      <input id="new_email" value={newEmployee.email} onChange={(e) => setNewEmployee((prev) => ({ ...prev, email: e.target.value }))} />
+                    </div>
+                  </div>
+                  <div className={styles.wrapper}>
+                    <div className={styles.formelement}>
+                      <label htmlFor="new_contactNumber">Contact Number</label>
+                      <input id="new_contactNumber" value={newEmployee.contactNumber} onChange={(e) => setNewEmployee((prev) => ({ ...prev, contactNumber: e.target.value }))} />
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div className={styles.employeedetails_wrapper_button}>
+                <button type="button" onClick={handleConfirmAdd}>Confirm</button>
+                <button type="button" onClick={() => { setNewEmployee(emptyEmployee); setMode("view"); }}>Cancel</button>
+              </div>
+            </>
+          ) : mode === "history" ? (
+            <>
+              <div className={styles.employeedetails_wrapper_button}>
+                <button
+                  type="button"
+                  onClick={handleSummarise}
+                  disabled={loading || selectedDataSet[currentRecord].callLogs.length === 0}
+                >
+                  {loading ? "Summarising..." : "Summarise Call History"}
+                </button>
+              </div>
+              {summary && <p className={styles.summary}>{summary}</p>}
+              <CallHistoryTable callLogs={selectedDataSet[currentRecord].callLogs} />
+            </>
+          ) : (
+            <div className={styles.contentdiv_employees}>
+              <p className={styles.p_employees}>No employees</p>
+            </div>
+          )}
         </div>
       ) : (
         <div className={styles.contentdiv}>
