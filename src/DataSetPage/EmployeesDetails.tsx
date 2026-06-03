@@ -80,7 +80,7 @@ function EmployeesDetails({
     setLoading(true);
     setSummary("");
     try {
-      const res = await fetch("http://localhost:3001/api/summarise", {
+      const res = await fetch("/.netlify/functions/summarise", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ callLogs: selectedDataSet[currentRecord].callLogs }),
