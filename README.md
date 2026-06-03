@@ -2,12 +2,34 @@
 
 RenCRM is a client relationship manager built for sales teams. It lets users log into a personalised account, browse through their assigned company datasets, view and edit company and employee records, log calls, and schedule follow-up appointments. It also features an AI-powered call history summariser.
 
+# --Login Details--
+
+Account 1  
+Username: LWed  
+Password: Crumble
+
+Account 2  
+Username: SJay  
+Password: Doughnuts
+
+Account 3  
+Username: APal  
+Password: Angel Delight
+
+Account 4  
+Username: HTre  
+Password: Garlic
+
+Account Admin  
+Username: Admin  
+Password: Captain
+
 # --Tech Stack--
 
-Frontend: React, TypeScript, Vite, React Router, CSS Modules
-State Management: React Context API with a custom useCRM hook
-Backend: Node.js, Express
-AI: OpenAI GPT-4o-mini
+Frontend: React, TypeScript, Vite, React Router, CSS Modules  
+State Management: React Context API with a custom useCRM hook  
+Backend: Node.js, Express  
+AI: OpenAI GPT-4o-mini  
 Libraries: react-day-picker, date-fns, react-pro-sidebar, react-icons
 
 # --Features--
@@ -25,11 +47,11 @@ Account Details
 View and edit company information — name, address, town, county, postcode, telephone
 Employee Management
 
-View employees with forward/back pagination
-Add new employees
-Edit existing employee details
-Delete employees
-Automatically switches to call history after a call is logged
+View employees with forward/back pagination  
+Add new employees  
+Edit existing employee details  
+Delete employees  
+Automatically switches to call history after a call is logged  
 Call Log History
 
 Full table of all logged calls per company — date, contact, response type, notes, appointment
@@ -63,4 +85,3 @@ Create a .env file inside the server/ folder:
 
 OPENAI_API_KEY=your-key-here
 The app runs on http://localhost:5173 and the server on http://localhost:3001.
-
