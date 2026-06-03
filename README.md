@@ -2,6 +2,28 @@
 
 RenCRM is a client relationship manager built for sales teams. It lets users log into a personalised account, browse through their assigned company datasets, view and edit company and employee records, log calls, and schedule follow-up appointments. It also features an AI-powered call history summariser.
 
+# --Login Details--
+
+Account 1
+Username: LWed
+Password: Crumble
+
+Account 2
+Username: SJay
+Password: Doughnuts
+
+Account 3
+Username: APal
+Password: Angel Delight
+
+Account 4
+Username: HTre
+Password: Garlic
+
+Account Admin
+Username: Admin
+Password: Captain
+
 # --Tech Stack--
 
 Frontend: React, TypeScript, Vite, React Router, CSS Modules
@@ -63,3 +85,4 @@ Create a .env file inside the server/ folder:
 
 OPENAI_API_KEY=your-key-here
 The app runs on http://localhost:5173 and the server on http://localhost:3001.
+
