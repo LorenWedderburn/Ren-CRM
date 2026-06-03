@@ -4,23 +4,23 @@ RenCRM is a client relationship manager built for sales teams. It lets users log
 
 # --Login Details--
 
-Account 1
+Account 1  
 Username: LWed  
 Password: Crumble  
 
-Account 2
+Account 2  
 Username: SJay  
 Password: Doughnuts  
 
-Account 3
+Account 3  
 Username: APal  
 Password: Angel Delight  
 
-Account 4
+Account 4  
 Username: HTre  
 Password: Garlic  
 
-Account Admin
+Account Admin  
 Username: Admin  
 Password: Captain  
 
