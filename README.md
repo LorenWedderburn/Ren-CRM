@@ -26,11 +26,11 @@ Password: Captain
 
 # --Tech Stack--
 
-Frontend: React, TypeScript, Vite, React Router, CSS Modules
-State Management: React Context API with a custom useCRM hook
-Backend: Node.js, Express
-AI: OpenAI GPT-4o-mini
-Libraries: react-day-picker, date-fns, react-pro-sidebar, react-icons
+Frontend: React, TypeScript, Vite, React Router, CSS Modules  
+State Management: React Context API with a custom useCRM hook  
+Backend: Node.js, Express  
+AI: OpenAI GPT-4o-mini  
+Libraries: react-day-picker, date-fns, react-pro-sidebar, react-icons  
 
 # --Features--
 
@@ -47,12 +47,12 @@ Account Details
 View and edit company information — name, address, town, county, postcode, telephone
 Employee Management
 
-View employees with forward/back pagination
-Add new employees
-Edit existing employee details
-Delete employees
-Automatically switches to call history after a call is logged
-Call Log History
+View employees with forward/back pagination  
+Add new employees  
+Edit existing employee details  
+Delete employees  
+Automatically switches to call history after a call is logged  
+Call Log History  
 
 Full table of all logged calls per company — date, contact, response type, notes, appointment
 AI summarisation — sends all call notes to OpenAI and returns a one-paragraph summary of the account's history
