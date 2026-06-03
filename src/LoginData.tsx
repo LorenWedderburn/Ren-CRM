@@ -73,8 +73,8 @@ export const contactBank: Contact[] = [
   {
     firstName: "Azim",
     secondName: "Palmer",
-    jobTitle: "National Disgrace",
-    email: "Eatme@clownworld.co.uk",
+    jobTitle: "Senior Developer",
+    email: "AzPar@devdiary.co.uk",
     contactNumber: "089029194721",
     age: 37,
     id: 3,
