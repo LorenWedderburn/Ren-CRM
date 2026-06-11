@@ -17,6 +17,10 @@ You can see  the records of the current dataset you are in. The "employee detail
 The "account details" panel allows you to see and edit the current company details.  
 The "wrap up" panel allows you to create notes and save and log them. As well as change just the details of the current record for saving.
 
+
+![Call Log](https://github.com/LorenWedderburn/Ren-CRM/blob/main/screenshots/call-log.png)
+Allows you to see a log of all the calls made recently along with the ability to summarise the calls made through an openai API call 
+  
 # --Login Details--
 
 Account 1  
