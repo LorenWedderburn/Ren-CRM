@@ -20,7 +20,10 @@ The "wrap up" panel allows you to create notes and save and log them. As well as
 
 ![Call Log](https://github.com/LorenWedderburn/Ren-CRM/blob/main/screenshots/call-log.png)
 Allows you to see a log of all the calls made recently along with the ability to summarise the calls made through an openai API call 
-  
+
+![Contacts](https://github.com/LorenWedderburn/Ren-CRM/blob/main/screenshots/contacts.png)
+Allows you to see all of the records on the "database" and filter for various different criteria. Name, Job title, dataset etc.
+
 # --Login Details--
 
 Account 1  
