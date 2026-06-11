@@ -2,7 +2,7 @@
 
 RenCRM is a client relationship manager built for sales teams. It lets users log into a personalised account, browse through their assigned company datasets, view and edit company and employee records, log calls, and schedule follow-up appointments. It also features an AI-powered call history summariser.
 
-🎬 **Live Demo:** [renware-movielist.netlify.app](https://renware-movielist.netlify.app/)
+🎬 **Live Demo:** [rencrm.netlify.app/](https://rencrm.netlify.app/)
 
 # --Screenshots--
 
