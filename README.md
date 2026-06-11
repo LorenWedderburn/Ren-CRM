@@ -10,6 +10,11 @@ Enter your credentials to login to the CRM
 ![Dashboard](https://github.com/LorenWedderburn/Ren-CRM/blob/main/screenshots/dashboard.PNG)
 After you have logged in pick the dataset you are currently working. The datasets available to you will be the ones allocated to your account
 
+![Account Details](https://github.com/LorenWedderburn/Ren-CRM/blob/main/screenshots/account-details.png)
+You can see  the records of the current dataset you are in. The "employee details" panel allows you to see and switch between all employees of the current record, edit, add a new record and see and summarise all notes.  
+The "account details" panel allows you to see and edit the current company details.  
+The "wrap up" panel allows you to create notes and save and log them. As well as change just the details of the current record for saving.
+
 # --Login Details--
 
 Account 1  
