@@ -4,7 +4,7 @@ RenCRM is a client relationship manager built for sales teams. It lets users log
 
 # --Screenshots--
 
-![Login](.../screenshots/login.png)
+![Login](.../screenshots/login.PNG)
 Enter your credentials to login to the CRM
 
 # --Login Details--
