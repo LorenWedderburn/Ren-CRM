@@ -7,8 +7,10 @@ RenCRM is a client relationship manager built for sales teams. It lets users log
 ![Login](https://github.com/LorenWedderburn/Ren-CRM/blob/main/screenshots/login.PNG)
 Enter your credentials to login to the CRM
 
+  
 ![Dashboard](https://github.com/LorenWedderburn/Ren-CRM/blob/main/screenshots/dashboard.PNG)
 After you have logged in pick the dataset you are currently working. The datasets available to you will be the ones allocated to your account
+
 
 ![Account Details](https://github.com/LorenWedderburn/Ren-CRM/blob/main/screenshots/account-details.png)
 You can see  the records of the current dataset you are in. The "employee details" panel allows you to see and switch between all employees of the current record, edit, add a new record and see and summarise all notes.  
