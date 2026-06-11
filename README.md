@@ -2,6 +2,11 @@
 
 RenCRM is a client relationship manager built for sales teams. It lets users log into a personalised account, browse through their assigned company datasets, view and edit company and employee records, log calls, and schedule follow-up appointments. It also features an AI-powered call history summariser.
 
+# --Screenshots--
+
+![Login](screenshots/login.png)
+Enter your credentials to login to the CRM
+
 # --Login Details--
 
 Account 1  
